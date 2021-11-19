@@ -1,3 +1,14 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "prettier",
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "react/prop-types": 0,
+    "no-console": "error",
+    "react/react-in-jsx-scope": "off",
+    "jsx-quotes": ["warn", "prefer-single"],
+  },
 }
