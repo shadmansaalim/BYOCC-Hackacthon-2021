@@ -45,7 +45,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
             justifyContent='space-evenly'
             alignItems='center'
           >
-            <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+            <Avatar name='John Doe' />
             John Doe
           </DrawerHeader>
 
