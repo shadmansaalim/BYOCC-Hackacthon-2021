@@ -2,7 +2,7 @@
 import { Box } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 
-export const DashboardCard = ({organisation}) => {
+export const DashboardCard = ({ organisation, onClick }) => {
    const {name,img,avgRating} = organisation;
 
   return (
@@ -19,6 +19,7 @@ export const DashboardCard = ({organisation}) => {
         transform: "translate(0, -5px)",
       }}
       _active={{ boxShadow: "none", transform: "none" }}
+      onClick={onClick}
     >
       <Box
         height='100px'
