@@ -38,7 +38,7 @@ export const SearchCard = ({ cardData }) => {
               colorScheme="green"
               icon={<AddIcon/>}
               borderRadius="full"
-              onClick={() => router.push('/buy_coffee')}
+              onClick={() => router.push(`/buy_coffee/${_id}`)}
             />
           </Flex>
         

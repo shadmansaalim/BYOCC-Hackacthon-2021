@@ -2,6 +2,7 @@ import { Container, Input, Text, Flex, Grid, Box } from "@chakra-ui/react"
 import { SearchCard } from "../../components/Search/index"
 import axios from 'axios'
 import { useState, useEffect } from "react"
+import { CircularProgress } from '@chakra-ui/progress';
 
 export default function Search() {
   const [search_value, setSearchValue] = useState("")
@@ -18,7 +19,11 @@ export default function Search() {
       })
   }, [])
   return (
-    <Box width="80%" margin="10px 10%">
+    <div>
+      {
+        searchCards.length
+        ?
+        <Box width="80%" margin="10px 10%">
       <Flex direction='row'>
         <Input
           value={search_value}
@@ -50,5 +55,16 @@ export default function Search() {
           })}
       </Grid>
     </Box>
+    :
+    <div style={{
+      display: "flex",
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh'
+  }}>
+      <CircularProgress isIndeterminate color="green.300" />
+  </div>
+      }
+    </div>
   )
 }

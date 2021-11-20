@@ -28,8 +28,8 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
 
   const routes = [
     {
-      name: "programs",
-      href: "/programs",
+      name: "Organisations",
+      href: "/organisation",
       icon: <HiOutlineHeart />,
     },
     {
