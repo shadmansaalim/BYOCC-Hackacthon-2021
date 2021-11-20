@@ -10,7 +10,7 @@ const AuthContainer = ({ children, handleSubmit }) => {
     >
       <Box color='#000'>
         <Text fontSize='6xl' fontWeight='bold' color='#212121'>
-          BYOC
+          BYOCC
         </Text>
         <Text fontSize='lg'>Bring your own cup and enjoy rewards</Text>
       </Box>
@@ -27,6 +27,7 @@ const AuthContainer = ({ children, handleSubmit }) => {
       >
         <Stack
           bg='#EEEEEE'
+          color='#000'
           borderTopRadius='40'
           w={{ base: "100%", sm: "85%", md: "65%", lg: "40%" }}
           spacing={3}
