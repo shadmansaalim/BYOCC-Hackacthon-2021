@@ -6,42 +6,50 @@ import {
   Container,
   HStack,
   Link,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import { FaFacebook, FaTwitter, FaGoogle } from "react-icons/fa";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import useAuth from "../../hooks/useAuth";
-
-
 
 export default function Login() {
   const router = useRouter();
   const [loginData, setLoginData] = useState({});
-  const { user, loginUser, signInWithGoogle,
+  const {
+    user,
+    loginUser,
+    signInWithGoogle,
     signInWithFacebook,
-    signInWithTwitter } = useAuth();
+    signInWithTwitter,
+  } = useAuth();
 
-
-  const handleOnBlur = e => {
+  const handleOnBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
     const newLoginData = { ...loginData };
     newLoginData[field] = value;
     setLoginData(newLoginData);
-  }
+  };
 
-  const handleLoginSubmit = e => {
+  const handleLoginSubmit = (e) => {
     e.preventDefault();
     loginUser(loginData.email, loginData.password, router);
-  }
+  };
 
   return (
     <div>
-      <Container maxW="container.sm" textAlign="center" p={0} style={{
-        backgroundColor: 'rgb(56, 161, 105)'
-      }}>
-        <Container p={5} style={{ color: 'white' }}>
-          <Text fontSize="6xl" style={{ fontWeight: 'bold' }}>BYOC</Text>
+      <Container
+        maxW="container.sm"
+        textAlign="center"
+        p={0}
+        style={{
+          backgroundColor: "rgb(56, 161, 105)",
+        }}
+      >
+        <Container p={5} style={{ color: "white" }}>
+          <Text fontSize="6xl" style={{ fontWeight: "bold" }}>
+            BYOC
+          </Text>
           <Text fontSize="lg">Bring your own cup and enjoy rewards</Text>
         </Container>
 
@@ -68,38 +76,55 @@ export default function Login() {
             <Link color="green">Forgot Password?</Link>
 
             <p className="divider-text">
-              <span style={{
-                backgroundColor: 'white',
+              <span
+                style={{
+                  backgroundColor: "white",
 
-                borderRadius: '50%',
-                padding: '6px'
-              }}>OR</span>
+                  borderRadius: "50%",
+                  padding: "6px",
+                }}
+              >
+                OR
+              </span>
             </p>
 
-            <HStack style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <Button onClick={() => signInWithFacebook(router)} colorScheme="facebook" leftIcon={<FaFacebook />}>
+            <HStack
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Button
+                onClick={() => signInWithFacebook(router)}
+                colorScheme="facebook"
+                leftIcon={<FaFacebook />}
+              >
                 Facebook
               </Button>
-              <Button onClick={() => signInWithGoogle(router)} colorScheme="red" leftIcon={<FaGoogle />}>
+              <Button
+                onClick={() => signInWithGoogle(router)}
+                colorScheme="red"
+                leftIcon={<FaGoogle />}
+              >
                 Google
               </Button>
               {/* <Button onClick={() => signInWithTwitter(router)} colorScheme="twitter" leftIcon={<FaTwitter />}>
                 Twitter
               </Button> */}
-
             </HStack>
 
             <label>New User?</label>
-            <Button colorScheme="green" variant="outline" onClick={() => router.push('/signup')}>
+            <Button
+              colorScheme="green"
+              variant="outline"
+              onClick={() => router.push("/signup")}
+            >
               Create an Account
             </Button>
           </Stack>
         </form>
       </Container>
-    </div >
+    </div>
   );
 }
