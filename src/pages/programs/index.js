@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Input, Text, Flex, Grid, Box } from "@chakra-ui/react"
 
-import { SearchCard } from "@components/Search"
+import { DashboardCard } from "@components/Dashboard"
 
 export default function Search({ data: searchCards }) {
   const [search_value, setSearchValue] = useState("")
@@ -10,7 +10,7 @@ export default function Search({ data: searchCards }) {
   }
 
   return (
-    <Box width='95%' margin='10px auto'>
+    <Box width='80%' margin='10px auto'>
       <Flex direction='row'>
         <Input
           value={search_value}
@@ -38,7 +38,7 @@ export default function Search({ data: searchCards }) {
             return null
           })
           .map((data) => {
-            return <SearchCard key={data.id} cardData={data} />
+            return <DashboardCard key={data.id} organisation={data} onClick={() => console.log("Hello")} />
           })}
       </Grid>
     </Box>
