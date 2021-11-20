@@ -11,11 +11,24 @@ import {
 import { DashboardCard } from "@components/Dashboard"
 import useAuth from "src/hooks/useAuth"
 import { CircularProgress } from "@chakra-ui/progress"
-
-export default function Dashboard({ programs }) {
+import PrivateRoute from "src/PrivateRoute/PrivateRoute"
+import { useEffect, useState } from "react"
+export default function Dashboard() {
   const { user } = useAuth()
+  const [programs,setPrograms] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/userProgram?email=${user.email}`)
+    .then(res => res.json())
+    .then(data => setPrograms(data));
+  },[user.email])
+
   return (
-    <Box width='80%' margin='10px 10%'>
+    <PrivateRoute>
+      {
+        programs.length
+        ?
+        <Box width='80%' margin='10px 10%'>
       <Flex direction='row'>
         <Text fontSize='2xl' style={{ fontWeight: "bold" }}>
           My Loyalty Cards
@@ -36,15 +49,16 @@ export default function Dashboard({ programs }) {
         ))}
       </Grid>
     </Box>
+    :
+    <div style={{
+      display: "flex",
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh'
+  }}>
+      <CircularProgress isIndeterminate color="green.300" />
+  </div>
+      }
+    </PrivateRoute>
   )
-}
-
-export async function getStaticProps(context) {
-  const res = await fetch(
-    `http://localhost:3000/api/userProgram?email=${user.email}`
-  )
-  const programs = await res.json()
-  return {
-    props: { programs }, // will be passed to the page component as props
-  }
 }
