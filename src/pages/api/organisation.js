@@ -27,7 +27,7 @@ async function getOrganisations(req, res) {
 // const organisation = [
 //   {
 //     name: "Starbucks",
-//     organisationID: 1,
+//     organisationID: "o1",
 //     img: "https://i.ibb.co/2W4ZWgX/starbucks.jpg",
 //     avgRating: 0,
 //     reviews: [{
@@ -43,7 +43,7 @@ async function getOrganisations(req, res) {
 //   },
 //   {
 //     name: "Gloria Jean's",
-//     organisationID: 2,
+//     organisationID: "o2",
 //     img: "https://i.ibb.co/jLb2gNC/gloria.jpg",
 //     avgRating: 0,
 //     reviews: [{
