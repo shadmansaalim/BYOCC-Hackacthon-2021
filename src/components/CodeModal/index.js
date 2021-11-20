@@ -10,7 +10,7 @@ import {
   Button,
 } from "@chakra-ui/react"
 
-function CodeModal({ isOpen, onOpen, onClose }) {
+function CodeModal({ isOpen, onClose, updateStampCount }) {
   const uniqueCode = "1234ABC"
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -24,7 +24,15 @@ function CodeModal({ isOpen, onOpen, onClose }) {
               {uniqueCode}
             </Text>
             <Flex direction='row' mt={5} justify='center'>
-              <Button width='400px' bg='#498741' color='white'>
+              <Button
+                width='400px'
+                bg='#498741'
+                color='white'
+                onClick={() => {
+                  onClose()
+                  updateStampCount()
+                }}
+              >
                 Done
               </Button>
             </Flex>

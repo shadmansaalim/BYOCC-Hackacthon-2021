@@ -89,7 +89,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
                   style={{ color: "black", width: "100%" }}
                 >
                   {icon}
-                  <Text>{_.upperFirst(name)}</Text>
+                  <Text ml={5}>{_.upperFirst(name)}</Text>
                 </Button>
               </Link>
             ))}

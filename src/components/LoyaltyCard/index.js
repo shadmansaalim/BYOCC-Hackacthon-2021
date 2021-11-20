@@ -15,9 +15,7 @@ import { FaCoffee } from "react-icons/fa"
 
 import { updateStampCount } from "@utils/updateStampCount"
 
-export const PlainCard = ({ maxStamps, backgroundClr }) => {
-  const [stamps, setStamps] = useState(0)
-
+export const PlainCard = ({ stamps, maxStamps, backgroundClr }) => {
   return (
     <>
       <Box

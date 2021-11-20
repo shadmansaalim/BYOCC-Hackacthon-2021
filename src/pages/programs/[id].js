@@ -2,12 +2,35 @@ import { VStack, Box, Text, Heading, Flex, Spacer } from "@chakra-ui/react"
 import { Button } from "@chakra-ui/button"
 import { AddIcon } from "@chakra-ui/icons"
 import { CircularProgress } from "@chakra-ui/progress"
-
+import { PlainCard } from "@components/LoyaltyCard"
 import { RatingCard } from "@components/RatingCard"
+import { RatingForm } from "@components/RatingForm"
 
+import useFirebase from "@hooks/useFirebase"
+import axios from "axios"
+import useAuth from "@hooks/useAuth"
+import swal from "sweetalert"
 export default function BusinessDetails({ data: organisation }) {
   const { img, name, reviews } = organisation[0]
+  const { user } = useAuth()
 
+  const addProgram = async () => {
+    const program = organisation[0].programs[0]
+
+    const res = await axios.put(
+      `http://localhost:3000/api/userData?email=${user.email}`,
+      {
+        organisationID: organisation[0].organisationID,
+        programName: program.name,
+        uniqueCode: "ABC4123",
+        maxStamp: program.numStamps,
+        numOfStamps: 0,
+      }
+    )
+    if (res.data.modifiedCount > 0) {
+      swal("Successfully Added", "Please check your Dashboard", "success")
+    }
+  }
   return (
     <div>
       {organisation ? (
@@ -25,18 +48,28 @@ export default function BusinessDetails({ data: organisation }) {
                 {name}
               </Heading>
               <Spacer />
-              <Button leftIcon={<AddIcon />} colorScheme='green'>
+              <Button
+                leftIcon={<AddIcon />}
+                colorScheme='green'
+                onClick={() => addProgram()}
+              >
                 Add
               </Button>
             </Flex>
 
             <Text p={5}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-              dolor eos tempora nostrum? Corrupti obcaecati animi corporis
-              consequatur, consequuntur veritatis fuga aspernatur perspiciatis
-              itaque exercitationem, expedita natus laboriosam quod voluptatum.
+              dolor eos tempora nostrum.
             </Text>
-            <Heading as='h3' size='lg'>
+
+            <Box align='center'>
+              <PlainCard />
+            </Box>
+            <Box mt={10}>
+              <RatingForm />
+            </Box>
+
+            <Heading as='h3' size='lg' mt={10}>
               Reviews
             </Heading>
             <VStack>
