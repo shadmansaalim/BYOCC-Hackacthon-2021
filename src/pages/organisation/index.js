@@ -11,7 +11,7 @@ export default function Search() {
   const [searchCards, setSearchCards] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/programs").then((response) => {
+    axios.get("http://localhost:3000/api/organisation").then((response) => {
       setSearchCards(response.data)
     })
   }, [])
