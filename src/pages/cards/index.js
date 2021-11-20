@@ -45,7 +45,7 @@ const cards = () => {
           flexDirection='column'
           mt={9}
         >
-          <Button h='45px' w='350px' borderRadius='40px' colorScheme='teal'>
+          <Button h='45px' w='350px' borderRadius='40px' colorScheme='success'>
             Buy Coffee
           </Button>
           <Button h='45px' w='350px' borderRadius='40px' colorScheme='danger'>
