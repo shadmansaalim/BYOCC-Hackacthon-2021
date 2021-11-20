@@ -42,8 +42,16 @@ async function updateUserData(req, res) {
     // connect to the database
     let { db } = await connectToDatabase()
     const usersCollection = db.collection("users")
-    const organisationCollection = db.collection("organisation")
-    
+    const userEmail = req.query.email;
+    const filter = { email: userEmail };
+    const options = { upsert: true };
+    const updateDoc = {
+      $set: {
+        addedOrganisations: []
+      },
+    };
+    const result = await usersCollection.updateOne(filter, updateDoc,options);
+
   } catch (error) {
     // return the error
     res.send("Could not add user to database")

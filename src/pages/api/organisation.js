@@ -7,6 +7,9 @@ export default async function handler(req, res) {
     case "GET": {
       return getOrganisations(req, res)
     }
+    case "PUT": {
+      return updateOrganisation(req, res)
+    }
   }
 }
 
@@ -23,6 +26,28 @@ async function getOrganisations(req, res) {
     res.sendStatus(error.status).send("Error getting programs")
   }
 }
+async function updateOrganisation(req, res) {
+  try {
+    // connect to the database
+    let { db } = await connectToDatabase()
+    const organisationCollection = db.collection("organisation")
+    const filter = { _id: ObjectId(id) }
+    const organisation = organisationCollection.findOne(filter);
+    const options = { upsert: true };
+    const updateDoc = {
+      $set: {
+        reviews: [...organisation.reviews,review]
+      },
+    };
+    const result = await organisationCollection.updateOne(filter, updateDoc,options);
+  } catch (error) {
+    // return the error
+    res.sendStatus(error.status).send("Error getting programs")
+  }
+}
+
+
+
 
 // const organisation = [
 //   {

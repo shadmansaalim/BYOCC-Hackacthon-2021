@@ -21,7 +21,7 @@ export default function Dashboard() {
   const [organisations, setOrganisations] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/users?email=${user.email}`)
+    fetch(`http://localhost:3000/api/userData?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setOrganisations(data))
   }, [user.email])
