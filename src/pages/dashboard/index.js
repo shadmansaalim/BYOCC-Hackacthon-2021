@@ -6,8 +6,15 @@ import { useEffect } from "react"
 import { useState } from "react"
 import useAuth from "src/hooks/useAuth"
 
-export default function Dashboard({programs}) {
+export default function Dashboard() {
   const{user} = useAuth();
+  const [programs,setPrograms] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/userProgram?email=${user.email}`)
+    .then(res => res.json())
+    .then(data => setPrograms(data))
+  },[user.email])
+  
   return (
     <Box width="80%" margin="10px 10%">
       <Flex direction="row">
@@ -21,24 +28,14 @@ export default function Dashboard({programs}) {
         templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
         my="8"
       >
-      
-      <Text fontSize="2xl" style={{ fontWeight: 'bold' }}>{programs.length}</Text>
-        
-       <DashboardCard></DashboardCard>
-       <DashboardCard></DashboardCard>
-       <DashboardCard></DashboardCard>
+      {
+        programs.map(program =>  <DashboardCard
+        key={program._id}
+        program={program}
+        ></DashboardCard>)
+      }
       </Grid>
     </Box>
   )
 }
-
-export async function getStaticProps(context) {
-  const res = await fetch(`http://localhost:3000/api/userProgram?email=${user.email}`);
-  const programs = await res.json();
-  return {
-      props: { programs }, // will be passed to the page component as props
-  }
-}
-
-
 
