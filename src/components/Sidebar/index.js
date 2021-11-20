@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react"
 import _ from "lodash"
 import { HiOutlineHeart, HiOutlineUser } from "react-icons/hi"
+import { AiOutlineIdcard } from "react-icons/ai"
 
 import useAuth from "@hooks/useAuth"
 
@@ -35,6 +36,11 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
       name: "dashboard",
       href: "/dashboard",
       icon: <HiOutlineUser />,
+    },
+    {
+      name: "cards",
+      href: "/cards",
+      icon: <AiOutlineIdcard />,
     },
   ]
   return (
@@ -83,8 +89,8 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
                   alignItems='center'
                   style={{ color: "black", width: "100%" }}
                 >
-                  <p mb='0'>{_.upperFirst(name)}</p>
                   {icon}
+                  <Text>{_.upperFirst(name)}</Text>
                 </Button>
               </Link>
             ))}

@@ -3,8 +3,8 @@ import { AddIcon, StarIcon } from "@chakra-ui/icons"
 import { useRouter } from "next/router"
 
 export const SearchCard = ({ cardData }) => {
-  console.log(cardData)
   const { _id, img, name, avgRating } = cardData
+
   const router = useRouter()
   return (
     <Box

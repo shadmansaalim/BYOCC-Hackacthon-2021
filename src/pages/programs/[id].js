@@ -8,7 +8,6 @@ import { RatingCard } from "@components/RatingCard"
 export default function BusinessDetails({ data: organisation }) {
   const { img, name, reviews } = organisation[0]
 
-  console.log(name)
   return (
     <div>
       {organisation ? (

@@ -1,9 +1,22 @@
-import { Text, Box, Container, Button, VStack } from "@chakra-ui/react"
+import { useRouter } from "next/router"
+import {
+  Text,
+  Box,
+  Container,
+  Button,
+  VStack,
+  Grid,
+  useDisclosure,
+} from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 
 import { PlainCard } from "@components/LoyaltyCard"
+import CodeModal from "@components/CodeModal"
 
 const cards = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const router = useRouter()
+
   const business = {
     name: "Starbucks",
     descrip:
@@ -44,25 +57,32 @@ const cards = () => {
         </Box>
 
         <Box mt={5}>
-          <Box align="center">
+          <Box align='center'>
             <PlainCard mx='auto' />
           </Box>
-          <VStack align="center" mt={9}>
-          <Button
+          <VStack align='center' mt={9}>
+            <Button
               h='45px'
               w='350px'
               borderRadius='40px'
               colorScheme='success'
+              onClick={onOpen}
             >
               Buy Coffee
             </Button>
-            <Button h='45px' w='350px' borderRadius='40px' colorScheme='danger'>
+            <Button
+              h='45px'
+              w='350px'
+              borderRadius='40px'
+              colorScheme='danger'
+              onClick={() => {}}
+            >
               Remove Card
             </Button>
           </VStack>
-          
         </Box>
       </Container>
+      <CodeModal isOpen={isOpen} onClose={onClose} />
     </div>
   )
 }

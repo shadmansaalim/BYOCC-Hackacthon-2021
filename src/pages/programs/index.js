@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Container, Input, Text, Flex, Grid, Box } from "@chakra-ui/react"
+import { Input, Text, Flex, Grid, Box } from "@chakra-ui/react"
 
 import { SearchCard } from "@components/Search"
 
@@ -10,7 +10,7 @@ export default function Search({ data: searchCards }) {
   }
 
   return (
-    <Box width='80%' margin='10px 10%'>
+    <Box width='95%' margin='10px auto'>
       <Flex direction='row'>
         <Input
           value={search_value}
