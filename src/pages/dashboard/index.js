@@ -1,13 +1,5 @@
 import { AddIcon } from "@chakra-ui/icons"
-import {
-  Button,
-  Grid,
-  Text,
-  Box,
-  Flex,
-  Spacer,
-  Container,
-} from "@chakra-ui/react"
+import { Button, Grid, Text, Box, Flex, Spacer, Link } from "@chakra-ui/react"
 import { DashboardCard } from "@components/Dashboard"
 import useAuth from "src/hooks/useAuth"
 import { CircularProgress } from "@chakra-ui/progress"
@@ -51,10 +43,12 @@ export default function Dashboard() {
             my='8'
           >
             {organisations.map((organisation) => (
-              <DashboardCard
-                key={organisation._id}
-                organisation={organisation}
-              ></DashboardCard>
+              <Link href='cards/'>
+                <DashboardCard
+                  key={organisation._id}
+                  organisation={organisation}
+                ></DashboardCard>
+              </Link>
             ))}
           </Grid>
         </Box>
