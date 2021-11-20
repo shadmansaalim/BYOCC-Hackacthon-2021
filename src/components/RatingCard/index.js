@@ -19,7 +19,7 @@ export const RatingCard = ({ review }) => {
           minWidth='4em'
         />
       ) : (
-        <Avatar name={review.name} mt='12' size='xl' />
+        <Avatar name={review.name} mt='2' size='lg' />
       )}
 
       <VStack alignItems='left' ml='2em'>

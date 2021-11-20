@@ -2,9 +2,10 @@ import { VStack, Box, Text, Heading, Flex, Spacer } from "@chakra-ui/react"
 import { Button } from "@chakra-ui/button"
 import { AddIcon } from "@chakra-ui/icons"
 import { CircularProgress } from "@chakra-ui/progress"
-import { PlainCard } from '@components/LoyaltyCard'
+import { PlainCard } from "@components/LoyaltyCard"
 import { RatingCard } from "@components/RatingCard"
-import { RatingForm } from '@components/RatingForm'
+import { RatingForm } from "@components/RatingForm"
+
 export default function BusinessDetails({ data: organisation }) {
   const { img, name, reviews } = organisation[0]
 
@@ -19,36 +20,39 @@ export default function BusinessDetails({ data: organisation }) {
             backgroundPosition='center center'
           />
 
-          <Box width='80%' margin='10px 10%'>
-            <Flex direction='row'>
-              <Heading as='h1' size='2xl'>
-                {name}
+          <Box mt={9}>
+            <Box width='80%' margin='10px 5%'>
+              <Flex direction='row'>
+                <Heading as='h1' size='2xl'>
+                  {name}
+                </Heading>
+                <Spacer />
+                <Button leftIcon={<AddIcon />} colorScheme='green'>
+                  Add
+                </Button>
+              </Flex>
+
+              <Text p={5}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
+                dolor eos tempora nostrum.
+              </Text>
+
+              <Box align='center'>
+                <PlainCard />
+              </Box>
+              <Box mt={10}>
+                <RatingForm />
+              </Box>
+
+              <Heading as='h3' size='lg' mt={10}>
+                Reviews
               </Heading>
-              <Spacer />
-              <Button leftIcon={<AddIcon />} colorScheme='green'>
-                Add
-              </Button>
-            </Flex>
-
-            <Text p={5}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-              dolor eos tempora nostrum.
-            </Text>
-
-            <Box align="center"><PlainCard/></Box>
-            <Box mt={10}><RatingForm/></Box>
-
-            <Heading as='h3' size='lg' mt={10}>
-              Reviews
-            </Heading>
-            <VStack>
-              {reviews.map((review, i) => {
-                return <RatingCard key={i} review={review} />
-              })}
-            </VStack>
-
-            
-            
+              <VStack>
+                {reviews.map((review, i) => {
+                  return <RatingCard key={i} review={review} />
+                })}
+              </VStack>
+            </Box>
           </Box>
         </>
       ) : (
