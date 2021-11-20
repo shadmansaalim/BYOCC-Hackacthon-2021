@@ -1,10 +1,4 @@
-import {
-  Text,
-  Box,
-  Container,
-  Button,
-  ButtonGroup,
-} from "@chakra-ui/react"
+import { Text, Box, Container, Button, VStack } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 
 import { PlainCard } from "@components/LoyaltyCard"
@@ -50,19 +44,11 @@ const cards = () => {
         </Box>
 
         <Box mt={5}>
-          <Box>
+          <Box align="center">
             <PlainCard mx='auto' />
           </Box>
-
-          <ButtonGroup
-            h='150px'
-            display='flex'
-            alignItems='center'
-            justifyContent='space-evenly'
-            flexDirection='column'
-            mt={9}
-          >
-            <Button
+          <VStack align="center" mt={9}>
+          <Button
               h='45px'
               w='350px'
               borderRadius='40px'
@@ -73,17 +59,8 @@ const cards = () => {
             <Button h='45px' w='350px' borderRadius='40px' colorScheme='danger'>
               Remove Card
             </Button>
-          </ButtonGroup>
-          {/* <form>
-            <Text align='center'>User Unique Code:</Text>
-            <Text fontSize="5xl" textAlign='center'>{uniqueCode}</Text>
-            <Flex direction='row' mt={5} justify='center'>
-              
-              <Button width='400px' bg='#498741' color='white'>
-                Done
-              </Button>
-            </Flex>
-          </form> */}
+          </VStack>
+          
         </Box>
       </Container>
     </div>
