@@ -9,11 +9,13 @@ export default function Search() {
         maxW='container.sm'
         textAlign='center'
         p={0}
+        mx="auto"
         style={{
           backgroundColor: "#F7F7F7",
+        
         }}
       >
-        <Container p={3} textAlign='left'>
+        <Container textAlign='center'>
           <form>
             <Input placeholder='Search' bg='white' />
           </form>

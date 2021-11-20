@@ -3,12 +3,18 @@ import AuthProvider from "../context/AuthProvider"
 
 import Navbar from "@components/Navbar"
 import "./app.css"
+import { useRouter } from "next/router"
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
   return (
     <ChakraProvider>
       <AuthProvider>
-        <Navbar />
+        {
+          (router.pathname !== '/login' && router.pathname !== '/signup')
+          &&
+          <Navbar />
+        }
         <Component {...pageProps} />
       </AuthProvider>
     </ChakraProvider>
