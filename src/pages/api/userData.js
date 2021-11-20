@@ -46,20 +46,28 @@ async function getUserData(req, res) {
 }
 async function updateUserData(req, res) {
   try {
-    console.log(req.body)
     // connect to the database
     let { db } = await connectToDatabase()
     const usersCollection = db.collection("users")
     const userEmail = req.query.email;
+    const organisationID = req.body.organisationID;
     const filter = { email: userEmail };
+    const user = await usersCollection.findOne(filter);
+    console.log(user);
+    const addedOrganisations = user.addedOrganisations;
     const options = { upsert: true };
     const updateDoc = {
       $set: {
-        addedOrganisations: []
+        addedOrganisations: [...addedOrganisations,organisationID],
+        programName: req.body.programName,
+        uniqueCode: req.body.uniqueCode,
+        maxStamp: req.body.maxStamp,
+        numOfStamps: req.body.numOfStamps
       },
     };
     const result = await usersCollection.updateOne(filter, updateDoc,options);
-
+    console.log(result);
+    res.json(result)
   } catch (error) {
     // return the error
     res.send("Could not add user to database")

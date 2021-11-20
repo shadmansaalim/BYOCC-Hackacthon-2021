@@ -7,22 +7,32 @@ import { RatingCard } from "@components/RatingCard"
 import { RatingForm } from "@components/RatingForm"
 import useFirebase from "@hooks/useFirebase"
 import axios from 'axios'
+import useAuth from "@hooks/useAuth"
+import swal from "sweetalert"
 export default function BusinessDetails({ data: organisation }) {
   const { img, name, reviews } = organisation[0]
-  const firebase = useFirebase()
+  const {user} = useAuth();
+  
   const addProgram = async () => {
-    const email = firebase.user.email
+   
     
     const program = organisation[0].programs[0]
-    
-    const res = await axios.put(`http://localhost:3000/api/userData?email=${email}`, {
-      organisationID: organisation[0]._id,
+
+    const res = await axios.put(`http://localhost:3000/api/userData?email=${user.email}`, {
+      organisationID: organisation[0].organisationID,
       programName: program.name,
       uniqueCode: "ABC4123",
       maxStamp: program.numStamps,
       numOfStamps: 0,
     })
-    
+    if(res.data.modifiedCount > 0){
+      swal(
+        "Successfully Added",
+        "Please check your Dashboard",
+        "success"
+      )
+    }
+
   }
   return (
     <div>
