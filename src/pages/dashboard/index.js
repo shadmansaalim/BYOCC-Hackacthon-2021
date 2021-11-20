@@ -21,7 +21,7 @@ export default function Dashboard() {
   const [organisations, setOrganisations] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/usersData?email=${user.email}`)
+    fetch(`http://localhost:3000/api/userData?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setOrganisations(data))
   }, [user.email])
@@ -58,16 +58,33 @@ export default function Dashboard() {
           </Grid>
         </Box>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
-          <CircularProgress isIndeterminate color='green.300' />
-        </div>
+        <>
+          {organisations === 0 ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: "48px",
+              }}
+            >
+              <Text fontSize='xl' style={{ fontWeight: "bold" }}>
+                No programs added to Dashboard
+              </Text>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+              }}
+            >
+              <CircularProgress isIndeterminate color='green.300' />
+            </div>
+          )}
+        </>
       )}
     </PrivateRoute>
   )

@@ -47,6 +47,7 @@ const useFirebase = () => {
 
         //Add user to database
         saveUserToDb(email, name, "POST")
+      
 
         // Send name to firebase
         updateProfile(auth.currentUser, {
@@ -164,7 +165,10 @@ const useFirebase = () => {
 
   //Function to add users to database MONGO DB
   const saveUserToDb = (email, displayName, method) => {
-    const user = { email, displayName }
+    const user = { 
+      email, displayName, addedOrganisations:[], programName: "",
+      uniqueCode: "", maxStamp: 0, numOfStamps: 0
+  }
     fetch("/api/users", {
       method: method,
       headers: {
