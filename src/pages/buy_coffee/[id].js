@@ -13,9 +13,9 @@ export default function BuyCoffee() {
   const {id} = router.query
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/buyCoffee/${id}`)
+    fetch(`http://localhost:3000/api/organisationdetails/${id}`)
     .then(res => res.json())
-    .then(data => console.log(data[0]))
+    .then(data => setOrganisation(data[0]))
   },[id])
 
 
@@ -38,7 +38,7 @@ export default function BuyCoffee() {
           
           <Box style={ {boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)"}} p={3} borderRadius="10px" display="flex" alignItems="center">
             <StarIcon color='black' mr="2"/>
-            <Box as='span'></Box>
+            <Box as='span'>{avgRating.toFixed(1)}</Box>
           </Box>
           
         </Flex>
