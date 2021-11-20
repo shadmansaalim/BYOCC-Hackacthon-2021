@@ -4,6 +4,7 @@ import { Button } from "@chakra-ui/button"
 import { StarIcon } from "@chakra-ui/icons"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
+import { CircularProgress } from '@chakra-ui/progress';
 
 export default function BuyCoffee() {
   const [organisation,setOrganisation] = useState({});
@@ -20,8 +21,12 @@ export default function BuyCoffee() {
 
 
   return (
-    <>
-      <Box
+    <div s>
+      {
+        organisation.name
+        ?
+        <>
+        <Box
         height='10em'
         objectFit='cover'
         backgroundImage={img}
@@ -59,6 +64,17 @@ export default function BuyCoffee() {
           </form>
         </Box>
       </Box>
-    </>
+        </>
+      :
+      <div style={{
+        display: "flex",
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+    }}>
+        <CircularProgress isIndeterminate color="green.300" />
+    </div>
+      }
+    </div>
   )
 }
