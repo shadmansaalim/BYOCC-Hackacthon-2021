@@ -6,10 +6,12 @@ import { PlainCard } from "@components/LoyaltyCard"
 import { RatingCard } from "@components/RatingCard"
 import { RatingForm } from "@components/RatingForm"
 
-import useFirebase from "@hooks/useFirebase"
 import axios from "axios"
 import useAuth from "@hooks/useAuth"
 import swal from "sweetalert"
+
+import useAuth from "src/hooks/useAuth"
+
 export default function BusinessDetails({ data: organisation }) {
   const { img, name, reviews } = organisation[0]
   const { user } = useAuth()
@@ -32,7 +34,7 @@ export default function BusinessDetails({ data: organisation }) {
     }
   }
   return (
-    <div>
+    <PrivateRoute>
       {organisation ? (
         <>
           <Box
@@ -91,7 +93,7 @@ export default function BusinessDetails({ data: organisation }) {
           <CircularProgress isIndeterminate color='green.300' />
         </div>
       )}
-    </div>
+    </PrivateRoute>
   )
 }
 export async function getStaticPaths() {

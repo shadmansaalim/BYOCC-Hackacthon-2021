@@ -19,8 +19,6 @@ import useAuth from "src/hooks/useAuth"
 
 const cards = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const router = useRouter()
-  const user = useAuth()
 
   const [stamps, setStamps] = useState(0)
   console.log(stamps)
