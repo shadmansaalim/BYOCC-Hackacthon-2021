@@ -8,8 +8,8 @@ const AuthContainer = ({ children, handleSubmit }) => {
       backgroundColor='rgb(56, 161, 105)'
       color='#fff'
     >
-      <Box color='#000'>
-        <Text fontSize='6xl' fontWeight='bold' color='#212121'>
+      <Box color='#fff'>
+        <Text fontSize='6xl' fontWeight='bold'>
           BYOCC
         </Text>
         <Text fontSize='lg'>Bring your own cup and enjoy rewards</Text>
