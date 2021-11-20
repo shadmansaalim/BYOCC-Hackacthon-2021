@@ -1,7 +1,6 @@
 import Head from "next/head"
 import { Container, Flex, Heading } from "@chakra-ui/react"
 
-import Navbar from "@components/Navbar"
 import { Card1, Card2, Card3 } from "@components/LoyaltyCard"
 
 import PrivateRoute from "../PrivateRoute/PrivateRoute"
@@ -16,7 +15,6 @@ export default function Home() {
             rel='stylesheet'
           />
         </Head>
-        <Navbar />
         <Container h='1500px' maxW='container.sm' textAlign='center'>
           <Heading size='3xl'>Mockups</Heading>
           <Flex
