@@ -4,7 +4,7 @@ import { AddIcon } from "@chakra-ui/icons"
 import { CircularProgress } from "@chakra-ui/progress"
 import { PlainCard } from '@components/LoyaltyCard'
 import { RatingCard } from "@components/RatingCard"
-
+import { RatingForm } from '@components/RatingForm'
 export default function BusinessDetails({ data: organisation }) {
   const { img, name, reviews } = organisation[0]
 
@@ -35,8 +35,10 @@ export default function BusinessDetails({ data: organisation }) {
               dolor eos tempora nostrum.
             </Text>
 
-            <PlainCard/>
-            <Heading as='h3' size='lg'>
+            <Box align="center"><PlainCard/></Box>
+            <Box mt={10}><RatingForm/></Box>
+
+            <Heading as='h3' size='lg' mt={10}>
               Reviews
             </Heading>
             <VStack>
@@ -44,6 +46,9 @@ export default function BusinessDetails({ data: organisation }) {
                 return <RatingCard key={i} review={review} />
               })}
             </VStack>
+
+            
+            
           </Box>
         </>
       ) : (
