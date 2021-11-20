@@ -6,7 +6,8 @@ import { useEffect } from "react"
 import { useState } from "react"
 import useAuth from "src/hooks/useAuth"
 
-export default function Dashboard() {
+export default function Dashboard({programs}) {
+  const{user} = useAuth();
   return (
     <Box width="80%" margin="10px 10%">
       <Flex direction="row">
@@ -20,6 +21,9 @@ export default function Dashboard() {
         templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
         my="8"
       >
+      
+      <Text fontSize="2xl" style={{ fontWeight: 'bold' }}>{programs.length}</Text>
+        
        <DashboardCard></DashboardCard>
        <DashboardCard></DashboardCard>
        <DashboardCard></DashboardCard>
@@ -27,4 +31,14 @@ export default function Dashboard() {
     </Box>
   )
 }
+
+export async function getStaticProps(context) {
+  const res = await fetch(`http://localhost:3000/api/userProgram?email=${user.email}`);
+  const programs = await res.json();
+  return {
+      props: { programs }, // will be passed to the page component as props
+  }
+}
+
+
 
