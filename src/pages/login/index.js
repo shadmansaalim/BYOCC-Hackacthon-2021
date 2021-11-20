@@ -10,7 +10,8 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { FaFacebook, FaTwitter, FaGoogle } from "react-icons/fa"
-import useAuth from "../../hooks/useAuth"
+
+import useAuth from "@hooks/useAuth"
 
 export default function Login() {
   const router = useRouter()
@@ -42,12 +43,10 @@ export default function Login() {
         maxW='container.sm'
         textAlign='center'
         p={0}
-        style={{
-          backgroundColor: "rgb(56, 161, 105)",
-        }}
+        backgroundColor='rgb(56, 161, 105)'
       >
-        <Container p={5} style={{ color: "white" }}>
-          <Text fontSize='6xl' style={{ fontWeight: "bold" }}>
+        <Container p={5} color='white'>
+          <Text fontSize='6xl' fontWeight='bold'>
             BYOC
           </Text>
           <Text fontSize='lg'>Bring your own cup and enjoy rewards</Text>
