@@ -1,12 +1,14 @@
 import Head from "next/head";
 import { Container, Flex, Heading, Button } from "@chakra-ui/react";
+
 import { Card1, Card2, Card3 } from "../components/LoyaltyCard";
-
-
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import useAuth from "../hooks/useAuth";
 
 export default function Home() {
+  const { logOut } = useAuth();
   return (
-
+    <PrivateRoute>
       <div>
         <Head>
           <link
@@ -15,7 +17,12 @@ export default function Home() {
           />
         </Head>
         <Container h="1500px" maxW="container.sm" textAlign="center">
-      
+          <Button
+            colorScheme="blue"
+            onClick={logOut}
+          >
+            Log Out
+          </Button>
           <Heading size="3xl">Mockups</Heading>
           <Flex
             h="inherit"
@@ -29,6 +36,6 @@ export default function Home() {
           </Flex>
         </Container>
       </div>
-
+    </PrivateRoute>
   );
 }
