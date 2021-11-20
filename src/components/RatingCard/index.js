@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Text,
-  Image,
-  VStack,
-  Avatar,
-} from "@chakra-ui/react"
+import { Box, Text, Image, VStack, Avatar } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 
 export const RatingCard = ({ review }) => {
@@ -34,11 +27,13 @@ export const RatingCard = ({ review }) => {
         <Text fontSize='md' fontWeight='bold'>
           {review.name}
         </Text>
+        {/*
+         */}
         <Box>
           {[...Array(5)].map((_, i) => (
             <StarIcon
               key={i}
-              color={i < ratingData.rating ? "green" : "gray.300"}
+              color={i < review.rating ? "green" : "gray.300"}
             />
           ))}
         </Box>

@@ -1,20 +1,14 @@
+import { useState } from "react"
 import { Container, Input, Text, Flex, Grid, Box } from "@chakra-ui/react"
-import { SearchCard } from "../../components/Search/index"
-import axios from "axios"
-import { useState, useEffect } from "react"
 
-export default function Search() {
+import { SearchCard } from "@components/Search"
+
+export default function Search({ data: searchCards }) {
   const [search_value, setSearchValue] = useState("")
   const handleChange = (event) => {
     setSearchValue(event.target.value)
   }
-  const [searchCards, setSearchCards] = useState([])
 
-  useEffect(() => {
-    axios.get("http://localhost:3000/api/organisation").then((response) => {
-      setSearchCards(response.data)
-    })
-  }, [])
   return (
     <Box width='80%' margin='10px 10%'>
       <Flex direction='row'>
@@ -49,4 +43,13 @@ export default function Search() {
       </Grid>
     </Box>
   )
+}
+
+export async function getStaticProps(context) {
+  const res = await fetch("http://localhost:3000/api/organisation")
+  const data = await res.json()
+
+  return {
+    props: { data },
+  }
 }
