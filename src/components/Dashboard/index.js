@@ -2,12 +2,8 @@
 import { Box } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 
-export const DashboardCard = () => {
-  const business = {
-    name: "Business Name",
-    imageUrl: "https://bit.ly/2Z4KKcF",
-    avgRating: 4,
-  }
+export const DashboardCard = ({program}) => {
+   const {name,img,rating} = program;
 
   return (
     <Box
@@ -27,18 +23,18 @@ export const DashboardCard = () => {
       <Box
         height='100px'
         width='100%'
-        backgroundImage={business.imageUrl}
+        backgroundImage={img}
         backgroundPosition='center center'
       />
       <Box p='3'>
         <Box display='flex' justifyContent='space-between'>
           <Box fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
-            {business.name}
+            {name}
           </Box>
           <Box display='flex' alignItems='center'>
             <StarIcon color='black' />
             <Box as='span' ml='2'>
-              {business.avgRating.toFixed(1)}
+              {rating.toFixed(1)}
             </Box>
           </Box>
         </Box>

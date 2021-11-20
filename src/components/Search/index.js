@@ -1,52 +1,41 @@
 // import { useState } from "react";
-import { Box, Circle, Container, Link } from "@chakra-ui/react"
+import { Box, Circle, Container, Link, Spacer, Heading, Flex, IconButton } from "@chakra-ui/react"
 import { StarIcon, PlusSquareIcon } from "@chakra-ui/icons"
+import { Button } from "@chakra-ui/button"
+import { AddIcon } from "@chakra-ui/icons"
 
-export const SearchCard = () => {
-  const business = {
-    name: "Business Name",
-    imageUrl: "https://bit.ly/2Z4KKcF",
-    avgRating: 4,
-  }
+export const SearchCard = ({ cardData }) => {
 
   return (
     <Box
-      as='button'
-      minW='400px'
+      width="95%"
       borderWidth='1px'
       borderRadius='lg'
-      mx='auto'
-      my='3'
-      _hover={{
-        transition: "0.2s ease-out",
-        boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)",
-        transform: "translate(0, -5px)",
-      }}
-      _active={{ boxShadow: "none", transform: "none" }}
+      m="2.5%"
     >
       <Box
         height='100px'
         width='100%'
-        backgroundImage={business.imageUrl}
+        backgroundImage={cardData.img}
         backgroundPosition='center center'
       />
       <Box p='3'>
-        <Box display='flex' justifyContent='space-between'>
-          <Box fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
-            {business.name}
-          </Box>
-          <Box display='flex' alignItems='center'>
-            <Circle size='25px' bg='green' color='white'>
-              <Link>+</Link>
-            </Circle>
-
-          </Box>
-          
-        </Box>
-        <Box textAlign="left">
-            <StarIcon color='black' />
-            <Box as='span'> {business.avgRating.toFixed(1)}</Box>
-          </Box>
+          <Flex direction="row">
+            <Box fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
+              {cardData.name}
+              <Box textAlign="left" display='flex' alignItems='center'>
+                <StarIcon color='black' size="xs" />
+                <Box as='span' ml='2' fontWeight="normal"> {cardData.rating.toFixed(1)}</Box>
+              </Box>
+            </Box>
+            <Spacer />
+            <IconButton 
+              colorScheme="green"
+              icon={<AddIcon/>}
+              borderRadius="full"
+            />
+          </Flex>
+        
       </Box>
     </Box>
   )
