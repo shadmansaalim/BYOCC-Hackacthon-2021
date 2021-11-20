@@ -14,6 +14,7 @@ import {
   DrawerCloseButton,
   Avatar,
   Link,
+  Image
 } from "@chakra-ui/react"
 import _ from "lodash"
 import { HiOutlineHeart, HiOutlineUser } from "react-icons/hi"
@@ -23,6 +24,7 @@ import useAuth from "@hooks/useAuth"
 const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
   const { logOut } = useAuth()
   const router = useRouter()
+  const {user} = useAuth();
 
   const routes = [
     {
@@ -32,7 +34,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
     },
     {
       name: "dashboard",
-      href: "",
+      href: "/dashboard",
       icon: <HiOutlineUser />,
     },
   ]
@@ -50,30 +52,38 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
           <DrawerHeader
             display='flex'
             alignItems='center'
+            flexDirection="column"
             justifyContent='space-around'
           >
-            <Avatar name='John Doe' />
-            John Doe
+            {
+              user.photoURL
+              ?
+              <Image src={user.photoURL} mt="12"  size="xl" style={{borderRadius: '50%'}}/>
+              :
+              <Avatar name={user.displayName} mt="12" size="xl"/>
+            }
+            <Text fontSize="xl" mt="4">{user.displayName}</Text>
           </DrawerHeader>
 
           <DrawerBody>
+          
             {routes.map(({ name, href, icon }) => (
-              <Link
-                key={name}
-                display='flex'
-                alignItems='center'
-                px={2}
-                py={1}
-                rounded='md'
-                _hover={{
-                  textDecoration: "none",
-                }}
-                href={href}
-                fontSize='1.3rem'
-              >
-                {icon}
-                <Text ml={4}>{_.upperFirst(name)}</Text>
-              </Link>
+               <Link href={href}>
+               <Button
+         size="md"
+         height="48px"
+         mb="3"
+         border="2px"
+         borderColor="green.500"
+         display="flex"
+         alignItems='center'
+         style={{color:'black', width: '100%'}}>
+           <p mb="0">{_.upperFirst(name)}</p> 
+           {icon}
+          </Button>
+            </Link>
+
+              
             ))}
           </DrawerBody>
           <DrawerFooter
