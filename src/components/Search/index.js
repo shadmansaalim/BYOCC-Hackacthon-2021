@@ -3,15 +3,19 @@ import { Box, Circle, Container, Link, Spacer, Heading, Flex, IconButton } from 
 import { StarIcon, PlusSquareIcon } from "@chakra-ui/icons"
 import { Button } from "@chakra-ui/button"
 import { AddIcon } from "@chakra-ui/icons"
+import { useRouter } from "next/router"
+import { route } from "next/dist/server/router"
 
 export const SearchCard = ({ cardData }) => {
-
+  console.log(cardData)
+ const router = useRouter();
   return (
     <Box
       width="95%"
       borderWidth='1px'
       borderRadius='lg'
       m="2.5%"
+      onClick={() => router.push(`/businessdetails/${cardData.programID}`)}
     >
       <Box
         height='100px'
@@ -33,6 +37,7 @@ export const SearchCard = ({ cardData }) => {
               colorScheme="green"
               icon={<AddIcon/>}
               borderRadius="full"
+              onClick={() => router.push('/buy_coffee')}
             />
           </Flex>
         
