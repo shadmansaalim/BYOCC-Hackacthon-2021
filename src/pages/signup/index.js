@@ -11,6 +11,8 @@ import {
 import { useRouter } from "next/router";
 import useAuth from "../../hooks/useAuth";
 import swal from "sweetalert";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons"
 
 export default function Signup() {
   const router = useRouter();
@@ -106,7 +108,7 @@ export default function Signup() {
               I agree to the Terms and Conditions
             </Checkbox>
             <Button type="submit" colorScheme="green">
-              Sign Up
+            Sign Up <FontAwesomeIcon icon={faUserPlus} style={{marginLeft: '4px'}}/>
             </Button>
             <label>Have an Account?</label>
 
@@ -115,7 +117,7 @@ export default function Signup() {
               variant="outline"
               onClick={() => router.push("/login")}
             >
-              Login
+              Login <FontAwesomeIcon icon={faSignInAlt} style={{marginLeft: '4px'}}/>
             </Button>
           </Stack>
         </form>
