@@ -1,35 +1,27 @@
-const { connectToDatabase } = require('../../lib/mongodb');
-const ObjectId = require('mongodb').ObjectId;
-
+import { connectToDatabase } from "@lib/mongodb"
 
 export default async function handler(req, res) {
-    // switch the methods
-    switch (req.method) {
-
-        case 'GET': {
-            return getPrograms(req, res);
-        }
-
+  // switch the methods
+  switch (req.method) {
+    case "GET": {
+      return getPrograms(req, res)
     }
+  }
 }
 
 async function getPrograms(req, res) {
-    try {
-        // connect to the database
-        let { db } = await connectToDatabase();
-        const programsCollection = db.collection("programs");
-        const cursor = programsCollection.find({});
-        const result = await cursor.toArray();
-        res.status(201).json(result)
-  
-    }
-
-    catch (error) {
-         // return the error
+  try {
+    // connect to the database
+    let { db } = await connectToDatabase()
+    const programsCollection = db.collection("programs")
+    const cursor = programsCollection.find({})
+    const result = await cursor.toArray()
+    res.status(201).json(result)
+  } catch (error) {
+    // return the error
     res.sendStatus(error.status).send("Error getting programs")
-    }
+  }
 }
-
 
 // const programs = [
 //   {
@@ -53,4 +45,3 @@ async function getPrograms(req, res) {
 //     freeItem: "coffee"
 //   }
 // ]
-
