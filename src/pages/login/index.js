@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRouter } from "next/router"
+import { useState } from "react"
 import {
   Input,
   Button,
@@ -7,75 +8,74 @@ import {
   HStack,
   Link,
   Text,
-} from "@chakra-ui/react";
-import { FaFacebook, FaTwitter, FaGoogle } from "react-icons/fa";
-import { useRouter } from "next/router";
-import useAuth from "../../hooks/useAuth";
+} from "@chakra-ui/react"
+import { FaFacebook, FaTwitter, FaGoogle } from "react-icons/fa"
+import useAuth from "../../hooks/useAuth"
 
 export default function Login() {
-  const router = useRouter();
-  const [loginData, setLoginData] = useState({});
+  const router = useRouter()
+  const [loginData, setLoginData] = useState({})
   const {
     user,
     loginUser,
     signInWithGoogle,
     signInWithFacebook,
     signInWithTwitter,
-  } = useAuth();
+  } = useAuth()
 
   const handleOnBlur = (e) => {
-    const field = e.target.name;
-    const value = e.target.value;
-    const newLoginData = { ...loginData };
-    newLoginData[field] = value;
-    setLoginData(newLoginData);
-  };
+    const field = e.target.name
+    const value = e.target.value
+    const newLoginData = { ...loginData }
+    newLoginData[field] = value
+    setLoginData(newLoginData)
+  }
 
   const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    loginUser(loginData.email, loginData.password, router);
-  };
+    e.preventDefault()
+    loginUser(loginData.email, loginData.password, router)
+  }
 
   return (
     <div>
       <Container
-        maxW="container.sm"
-        textAlign="center"
+        maxW='container.sm'
+        textAlign='center'
         p={0}
         style={{
           backgroundColor: "rgb(56, 161, 105)",
         }}
       >
         <Container p={5} style={{ color: "white" }}>
-          <Text fontSize="6xl" style={{ fontWeight: "bold" }}>
+          <Text fontSize='6xl' style={{ fontWeight: "bold" }}>
             BYOC
           </Text>
-          <Text fontSize="lg">Bring your own cup and enjoy rewards</Text>
+          <Text fontSize='lg'>Bring your own cup and enjoy rewards</Text>
         </Container>
 
         <form onSubmit={handleLoginSubmit}>
-          <Stack bg="#EEEEEE" borderTopRadius="45" spacing={3} p={5}>
+          <Stack bg='#EEEEEE' borderTopRadius='45' spacing={3} p={5}>
             <h3>Please Login To Continue</h3>
             <Input
-              type="email"
-              placeholder="Email"
-              name="email"
+              type='email'
+              placeholder='Email'
+              name='email'
               onBlur={handleOnBlur}
-              bg="white"
+              bg='white'
             />
             <Input
-              type="password"
-              name="password"
-              placeholder="Password"
+              type='password'
+              name='password'
+              placeholder='Password'
               onBlur={handleOnBlur}
-              bg="white"
+              bg='white'
             />
-            <Button type="submit" colorScheme="green">
+            <Button type='submit' colorScheme='green'>
               Login
             </Button>
-            <Link color="green">Forgot Password?</Link>
+            <Link color='green'>Forgot Password?</Link>
 
-            <p className="divider-text">
+            <p className='divider-text'>
               <span
                 style={{
                   backgroundColor: "white",
@@ -97,14 +97,14 @@ export default function Login() {
             >
               <Button
                 onClick={() => signInWithFacebook(router)}
-                colorScheme="facebook"
+                colorScheme='facebook'
                 leftIcon={<FaFacebook />}
               >
                 Facebook
               </Button>
               <Button
                 onClick={() => signInWithGoogle(router)}
-                colorScheme="red"
+                colorScheme='red'
                 leftIcon={<FaGoogle />}
               >
                 Google
@@ -116,8 +116,8 @@ export default function Login() {
 
             <label>New User?</label>
             <Button
-              colorScheme="green"
-              variant="outline"
+              colorScheme='green'
+              variant='outline'
               onClick={() => router.push("/signup")}
             >
               Create an Account
@@ -126,5 +126,5 @@ export default function Login() {
         </form>
       </Container>
     </div>
-  );
+  )
 }

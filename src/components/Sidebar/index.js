@@ -1,4 +1,5 @@
 import { forwardRef } from "react"
+import { useRouter } from "next/router"
 import {
   Box,
   IconButton,
@@ -21,6 +22,8 @@ import useAuth from "@hooks/useAuth"
 
 const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
   const { logOut } = useAuth()
+  const router = useRouter()
+
   const routes = [
     {
       name: "programs",
@@ -56,6 +59,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
           <DrawerBody>
             {routes.map(({ name, href, icon }) => (
               <Link
+                key={name}
                 display='flex'
                 alignItems='center'
                 px={2}
@@ -77,7 +81,13 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
             justifyContent='center'
             alignItems='center'
           >
-            <Button variant='outline' onClick={logOut}>
+            <Button
+              variant='outline'
+              onClick={() => {
+                logOut()
+                router.push("/")
+              }}
+            >
               Log Out
             </Button>
           </DrawerFooter>
