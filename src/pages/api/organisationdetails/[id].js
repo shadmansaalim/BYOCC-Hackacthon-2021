@@ -5,11 +5,14 @@ export default async function handler(req, res) {
   // switch the methods
   switch (req.method) {
     case "GET":
-      return getOrganisation(req, res)
+      getOrganisation(req, res)
       break
     case "PUT":
-      return updateOrganisation(req, res)
+      updateOrganisation(req, res)
       break
+
+    default:
+      res.status(404).json({ success: false })
   }
 }
 
@@ -23,13 +26,11 @@ async function getOrganisation(req, res) {
     const cursor = organisationCollection.find(query)
     const result = await cursor.toArray()
     res.status(201).json(result)
-
   } catch (error) {
     // return the error
     res.json("Error getting programs")
   }
 }
-
 
 async function updateOrganisation(req, res) {
   try {
@@ -37,17 +38,21 @@ async function updateOrganisation(req, res) {
     let { db } = await connectToDatabase()
     const organisationCollection = db.collection("organisation")
     const id = req.query.id
-    const review = req.body;
+    const review = req.body
     const filter = { _id: ObjectId(id) }
-    const organisation = await organisationCollection.findOne(filter);
-    const options = { upsert: true };
+    const organisation = await organisationCollection.findOne(filter)
+    const options = { upsert: true }
     const updateDoc = {
       $set: {
-        reviews: [...organisation.reviews,review]
+        reviews: [...organisation.reviews, review],
       },
-    };
-    const result = await organisationCollection.updateOne(filter, updateDoc,options);
-    res.json(result);
+    }
+    const result = await organisationCollection.updateOne(
+      filter,
+      updateDoc,
+      options
+    )
+    res.json(result)
   } catch (error) {
     // return the error
     res.sendStatus(error.status).send("Error getting programs")

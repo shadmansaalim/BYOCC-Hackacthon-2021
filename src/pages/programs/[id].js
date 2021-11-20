@@ -7,10 +7,9 @@ import { RatingCard } from "@components/RatingCard"
 import { RatingForm } from "@components/RatingForm"
 
 import axios from "axios"
-import useAuth from "@hooks/useAuth"
 import swal from "sweetalert"
 
-import useAuth from "src/hooks/useAuth"
+import useAuth from "@hooks/useAuth"
 
 export default function BusinessDetails({ data: organisation }) {
   const { img, name, reviews } = organisation[0]

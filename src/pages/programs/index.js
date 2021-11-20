@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Input, Text, Flex, Grid, Box } from "@chakra-ui/react"
 import { useRouter } from "next/router"
-import { DashboardCard } from "@components/Dashboard"
+import { DashboardCard } from "@components/DashboardCard"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 
 export default function Search({ data: searchCards }) {

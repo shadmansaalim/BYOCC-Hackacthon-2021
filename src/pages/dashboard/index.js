@@ -1,6 +1,6 @@
 import { AddIcon } from "@chakra-ui/icons"
 import { Button, Grid, Text, Box, Flex, Spacer, Link } from "@chakra-ui/react"
-import { DashboardCard } from "@components/Dashboard"
+import { DashboardCard } from "@components/DashboardCard"
 import useAuth from "src/hooks/useAuth"
 import { CircularProgress } from "@chakra-ui/progress"
 
@@ -8,7 +8,7 @@ import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
-export default function Dashboard() {
+export default function dashboard() {
   const router = useRouter()
   const { user } = useAuth()
   const [organisations, setOrganisations] = useState([])

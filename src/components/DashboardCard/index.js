@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 
 export const DashboardCard = ({ organisation, onClick }) => {
-   const {name,img,avgRating} = organisation;
+  const { name, img, avgRating } = organisation
 
   return (
     <Box
