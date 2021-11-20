@@ -44,7 +44,7 @@ export default function Signup() {
   }
 
   return (
-    <AuthContainer>
+    <AuthContainer handleSubmit={handleSignUpSubmit}>
       <h4 style={{ color: "#000" }}>Sign Up</h4>
       <Input
         type='text'
