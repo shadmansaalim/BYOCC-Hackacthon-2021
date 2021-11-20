@@ -27,10 +27,18 @@ async function getUserData(req, res) {
     const userEmail = req.query.email;
     const query1 = { email: userEmail };
     const user = await usersCollection.findOne(query1);
-    const userOrganisations = user.addedOrganisations;
-    const query2 = { organisationID: { $in: userOrganisations } };
-    const organisations = await organisationCollection.find(query2).toArray();
+    const userOrganisations = user?.addedOrganisations;
+    if(userOrganisations){
+      const query2 = { organisationID: { $in: userOrganisations } };
+      const organisations = await organisationCollection.find(query2).toArray();
+
     res.status(200).json(organisations)
+    }
+    else{
+      res.status(200).json(0)
+    }
+  
+
   } catch (error) {
     // return the error
     res.send("Could not add user to database")

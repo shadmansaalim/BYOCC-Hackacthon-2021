@@ -14,7 +14,6 @@ import { CircularProgress } from "@chakra-ui/progress"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 import { useEffect, useState } from "react"
 import { useRouter } from 'next/router'
-
 export default function Dashboard() {
   const router = useRouter()
   const { user } = useAuth()
@@ -54,7 +53,17 @@ export default function Dashboard() {
           </Grid>
         </Box>
       ) : (
-        <div
+        <>
+        {
+          organisations === 0
+          ?
+          <div style={{display: 'flex', alignItems:'center', justifyContent:'center', marginTop: '48px'}}>
+            <Text fontSize='xl'  style={{ fontWeight: "bold" }}>
+          No programs added to Dashboard
+        </Text>
+          </div>
+          :
+          <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -64,6 +73,8 @@ export default function Dashboard() {
         >
           <CircularProgress isIndeterminate color='green.300' />
         </div>
+        }
+        </>
       )}
     </PrivateRoute>
   )
