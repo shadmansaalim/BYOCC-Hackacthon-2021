@@ -1,46 +1,42 @@
-import { Box, Circle, Button } from "@chakra-ui/react"
-import { StarIcon } from "@chakra-ui/icons"
+// import { useState } from "react";
+import { Box, Circle, Container, Link, Spacer, Heading, Flex, IconButton } from "@chakra-ui/react"
+import { StarIcon, PlusSquareIcon } from "@chakra-ui/icons"
+import { Button } from "@chakra-ui/button"
+import { AddIcon } from "@chakra-ui/icons"
 
-export const SearchCard = () => {
-  const organisation = {
-    name: "Organisation Name",
-    imageUrl: "https://bit.ly/2Z4KKcF",
-    reviews: [
-      { text: "review1", rating: 4 },
-      { text: "review2", rating: 5 },
-    ],
-    avgRating: 4,
-  }
+export const SearchCard = ({ cardData }) => {
 
   return (
-    <div>
-      <Box as='button' minW='sm' borderWidth='1px' borderRadius='lg' m='3'>
-        <Box
-          height='100px'
-          width='100%'
-          backgroundImage={organisation.imageUrl}
-          backgroundPosition='center center'
-        />
-        <Box p='3'>
-          <Box display='flex' justifyContent='space-between'>
+    <Box
+      width="95%"
+      borderWidth='1px'
+      borderRadius='lg'
+      m="2.5%"
+    >
+      <Box
+        height='100px'
+        width='100%'
+        backgroundImage={cardData.img}
+        backgroundPosition='center center'
+      />
+      <Box p='3'>
+          <Flex direction="row">
             <Box fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
-              {organisation.name}
-              <br />
-              <Box textAlign='left'>
-                <StarIcon color='black' />
-                <Box as='span' ml={2}>
-                  {organisation.avgRating.toFixed(1)}
-                </Box>
+              {cardData.name}
+              <Box textAlign="left" display='flex' alignItems='center'>
+                <StarIcon color='black' size="xs" />
+                <Box as='span' ml='2' fontWeight="normal"> {cardData.rating.toFixed(1)}</Box>
               </Box>
             </Box>
-            <Box display='flex' alignItems='center'>
-              <Button borderRadius='100' bg='green' color='white'>
-                +
-              </Button>
-            </Box>
-          </Box>
-        </Box>
+            <Spacer />
+            <IconButton 
+              colorScheme="green"
+              icon={<AddIcon/>}
+              borderRadius="full"
+            />
+          </Flex>
+        
       </Box>
-    </div>
+    </Box>
   )
 }

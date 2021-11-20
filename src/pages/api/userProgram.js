@@ -17,7 +17,8 @@ async function getUserPrograms(req, res) {
     try {
         // connect to the database
         let { db } = await connectToDatabase();
-        const addedProgramsCollection = db.collection("added-programs");
+        const addedProgramsCollection = db.collection("addedPrograms");
+        const programsCollection = db.collection("programs");
         const userEmail = req.query.email;
         const query1 = { email: userEmail };
         const cursor = addedProgramsCollection.find(query1);
@@ -25,10 +26,11 @@ async function getUserPrograms(req, res) {
 
          // Checking if user has any purchased course
          if (addedProgramsDetail.length) {
-            const keys = Object.keys(orderDetails[0].order)
-            const query2 = { courseID: { $in: keys } };
-            const courses = await coursesCollection.find(query2).toArray();
-            return res.json(courses)
+            const ids = addedProgramsDetail[0].programs;
+            console.log(ids);
+            const query2 = { programID: { $in: ids } };
+            const programs = await programsCollection.find(query2).toArray();
+            return res.json(programs)
         }
         else {
             return res.json(0);
