@@ -8,7 +8,7 @@ import { route } from "next/dist/server/router"
 
 export const SearchCard = ({ cardData }) => {
   console.log(cardData)
-  const {organisationID,img,name, avgRating} = cardData
+  const {_id,img,name, avgRating} = cardData
  const router = useRouter();
   return (
     <Box
@@ -16,7 +16,7 @@ export const SearchCard = ({ cardData }) => {
       borderWidth='1px'
       borderRadius='lg'
       m="2.5%"
-      onClick={() => router.push(`/organisationdetails/${organisationID}`)}
+      onClick={() => router.push(`/organisationdetails/${_id}`)}
     >
       <Box
         height='100px'
