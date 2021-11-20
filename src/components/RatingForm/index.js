@@ -30,7 +30,7 @@ export const RatingForm = () => {
               onClick={() => setRating(ratingValue)}
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(ratingValue)}
-              color={rated ? "teal.500" : "gray.300"}
+              color={rated ? "green" : "gray.300"}
               cursor='pointer'
               m='2'
             />
@@ -44,7 +44,7 @@ export const RatingForm = () => {
         size='sm'
         m='2'
       />
-      <Button colorScheme='teal' variant='solid' m='2'>
+      <Button colorScheme='green' variant='solid' m='2'>
         Submit
       </Button>
     </>
