@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import {
   Text,
@@ -5,17 +6,24 @@ import {
   Container,
   Button,
   VStack,
-  Grid,
   useDisclosure,
 } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 
+import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 import { PlainCard } from "@components/LoyaltyCard"
 import CodeModal from "@components/CodeModal"
+import { updateStampCount } from "@utils/updateStampCount"
+
+import useAuth from "src/hooks/useAuth"
 
 const cards = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter()
+  const user = useAuth()
+
+  const [stamps, setStamps] = useState(0)
+  console.log(stamps)
 
   const business = {
     name: "Starbucks",
@@ -26,7 +34,7 @@ const cards = () => {
   }
 
   return (
-    <div>
+    <PrivateRoute>
       <Box
         height='10em'
         objectFit='cover'
@@ -56,10 +64,8 @@ const cards = () => {
           </Box>
         </Box>
 
-        <Box mt={5}>
-          <Box align='center'>
-            <PlainCard mx='auto' />
-          </Box>
+        <VStack align='center' mt={5}>
+          <PlainCard stamps={stamps} />
           <VStack align='center' mt={9}>
             <Button
               h='45px'
@@ -70,20 +76,18 @@ const cards = () => {
             >
               Buy Coffee
             </Button>
-            <Button
-              h='45px'
-              w='350px'
-              borderRadius='40px'
-              colorScheme='danger'
-              onClick={() => {}}
-            >
+            <Button h='45px' w='350px' borderRadius='40px' colorScheme='danger'>
               Remove Card
             </Button>
           </VStack>
-        </Box>
+        </VStack>
       </Container>
-      <CodeModal isOpen={isOpen} onClose={onClose} />
-    </div>
+      <CodeModal
+        isOpen={isOpen}
+        onClose={onClose}
+        updateStampCount={() => updateStampCount(stamps, setStamps, 9)}
+      />
+    </PrivateRoute>
   )
 }
 

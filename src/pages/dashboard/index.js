@@ -11,6 +11,7 @@ import {
 import { DashboardCard } from "@components/Dashboard"
 import useAuth from "src/hooks/useAuth"
 import { CircularProgress } from "@chakra-ui/progress"
+
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
