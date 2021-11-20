@@ -9,7 +9,6 @@ export const RatingCard = ({ review }) => {
       borderRadius='lg'
       display='flex'
       p={3}
-      m='0.5em'
       alignItems='center'
     >
     

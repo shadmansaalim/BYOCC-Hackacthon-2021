@@ -2,8 +2,8 @@
 import { Box } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 
-export const DashboardCard = ({program}) => {
-   const {name,img,rating} = program;
+export const DashboardCard = ({organisation}) => {
+   const {name,img,avgRating} = organisation;
 
   return (
     <Box
@@ -34,7 +34,7 @@ export const DashboardCard = ({program}) => {
           <Box display='flex' alignItems='center'>
             <StarIcon color='black' />
             <Box as='span' ml='2'>
-              {rating.toFixed(1)}
+              {avgRating.toFixed(1)}
             </Box>
           </Box>
         </Box>
