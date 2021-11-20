@@ -22,15 +22,15 @@ export default function BuyCoffee() {
       />
 
       <Box width='80%' margin='10px 10%'>
-        <Flex direction='row'>
+        <Flex direction='row' alignItems="center">
           <Heading as='h1' size='2xl'>
             {business.name}
           </Heading>
 
           <Spacer />
           
-          <Box style={ {boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)"}} p={3} borderRadius="10px">
-            <StarIcon color='black' />
+          <Box style={ {boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)"}} p={3} borderRadius="10px" display="flex" alignItems="center">
+            <StarIcon color='black' mr="2"/>
             <Box as='span'> {business.avgRating.toFixed(1)}</Box>
           </Box>
           
