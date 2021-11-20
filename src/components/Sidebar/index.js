@@ -95,7 +95,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
               variant='outline'
               onClick={() => {
                 logOut()
-                router.push("/")
+                router.push("/login")
               }}
             >
               Log Out
