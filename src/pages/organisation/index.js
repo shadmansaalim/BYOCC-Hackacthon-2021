@@ -12,7 +12,7 @@ export default function Search() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/programs')
+      .get('http://localhost:3000/api/organisation')
       .then(response => {
         setSearchCards(response.data)
       })

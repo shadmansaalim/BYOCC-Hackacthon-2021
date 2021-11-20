@@ -8,6 +8,7 @@ import { route } from "next/dist/server/router"
 
 export const SearchCard = ({ cardData }) => {
   console.log(cardData)
+  const {organisationID,img,name, avgRating} = cardData
  const router = useRouter();
   return (
     <Box
@@ -15,21 +16,21 @@ export const SearchCard = ({ cardData }) => {
       borderWidth='1px'
       borderRadius='lg'
       m="2.5%"
-      onClick={() => router.push(`/businessdetails/${cardData.programID}`)}
+      onClick={() => router.push(`/organisationdetails/${organisationID}`)}
     >
       <Box
         height='100px'
         width='100%'
-        backgroundImage={cardData.img}
+        backgroundImage={img}
         backgroundPosition='center center'
       />
       <Box p='3'>
           <Flex direction="row">
             <Box fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
-              {cardData.name}
+              {name}
               <Box textAlign="left" display='flex' alignItems='center'>
                 <StarIcon color='black' size="xs" />
-                <Box as='span' ml='2' fontWeight="normal"> {cardData.rating.toFixed(1)}</Box>
+                <Box as='span' ml='2' fontWeight="normal"> {avgRating.toFixed(1)}</Box>
               </Box>
             </Box>
             <Spacer />
