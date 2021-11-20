@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <AuthProvider>
+       {/* Not displaying navbar on login and signup page */}
         {
           (router.pathname !== '/login' && router.pathname !== '/signup')
           &&

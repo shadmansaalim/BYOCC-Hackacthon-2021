@@ -12,6 +12,8 @@ import {
 import { FaFacebook, FaTwitter, FaGoogle } from "react-icons/fa"
 
 import useAuth from "@hooks/useAuth"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons"
 
 export default function Login() {
   const router = useRouter()
@@ -70,7 +72,7 @@ export default function Login() {
               bg='white'
             />
             <Button type='submit' colorScheme='green'>
-              Login
+              Login <FontAwesomeIcon icon={faSignInAlt} style={{marginLeft: '4px'}}/>
             </Button>
             <Link color='green'>Forgot Password?</Link>
 
@@ -119,7 +121,7 @@ export default function Login() {
               variant='outline'
               onClick={() => router.push("/signup")}
             >
-              Create an Account
+           Create an Account <FontAwesomeIcon icon={faUserPlus} style={{marginLeft: 'px'}}/>
             </Button>
           </Stack>
         </form>
