@@ -1,7 +1,7 @@
 import Head from "next/head"
 import { Container, Flex, Heading } from "@chakra-ui/react"
 
-import { Card1, Card2, Card3 } from "@components/LoyaltyCard"
+import { PlainCard, GradientCard, FancyCard } from "@components/LoyaltyCard"
 
 import PrivateRoute from "../PrivateRoute/PrivateRoute"
 
@@ -23,9 +23,9 @@ export default function Home() {
             justifyContent='space-evenly'
             flexDirection='column'
           >
-            <Card1 />
-            <Card2 />
-            <Card3 />
+            <PlainCard />
+            <GradientCard />
+            <FancyCard />
           </Flex>
         </Container>
       </div>
