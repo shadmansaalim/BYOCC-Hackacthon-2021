@@ -2,7 +2,7 @@ import { VStack, Box, Text, Heading, Flex, Spacer } from "@chakra-ui/react"
 import { Button } from "@chakra-ui/button"
 import { AddIcon } from "@chakra-ui/icons"
 import { CircularProgress } from "@chakra-ui/progress"
-
+import { PlainCard } from '@components/LoyaltyCard'
 import { RatingCard } from "@components/RatingCard"
 
 export default function BusinessDetails({ data: organisation }) {
@@ -32,10 +32,10 @@ export default function BusinessDetails({ data: organisation }) {
 
             <Text p={5}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-              dolor eos tempora nostrum? Corrupti obcaecati animi corporis
-              consequatur, consequuntur veritatis fuga aspernatur perspiciatis
-              itaque exercitationem, expedita natus laboriosam quod voluptatum.
+              dolor eos tempora nostrum.
             </Text>
+
+            <PlainCard/>
             <Heading as='h3' size='lg'>
               Reviews
             </Heading>

@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { Input, Text, Flex, Grid, Box } from "@chakra-ui/react"
-
+import { useRouter } from 'next/router'
 import { DashboardCard } from "@components/Dashboard"
 
 export default function Search({ data: searchCards }) {
+  const router = useRouter()
   const [search_value, setSearchValue] = useState("")
   const handleChange = (event) => {
     setSearchValue(event.target.value)
@@ -38,7 +39,7 @@ export default function Search({ data: searchCards }) {
             return null
           })
           .map((data) => {
-            return <DashboardCard key={data.id} organisation={data} onClick={() => console.log("Hello")} />
+            return <DashboardCard key={data.id} organisation={data} onClick={() => router.push(`/programs/${data._id}`)} />
           })}
       </Grid>
     </Box>
