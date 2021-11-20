@@ -19,15 +19,12 @@ async function getOrganisations(req, res) {
       .find({})
       .toArray()
     // return the organisations
-    return res.json({
-        message: JSON.parse(JSON.stringify(organisations)),
-        success: true,
-    });
+    return res.json(organisations);
   } catch (error) {
     // return the error
     return res.json({
         message: new Error(error).message,
         success: false,
     });
-}
+  }
 }
