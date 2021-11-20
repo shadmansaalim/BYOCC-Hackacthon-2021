@@ -15,18 +15,18 @@ import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 import { useEffect, useState } from "react"
 export default function Dashboard() {
   const { user } = useAuth()
-  const [programs,setPrograms] = useState([]);
+  const [organisations,setOrganisations] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/userProgram?email=${user.email}`)
+    fetch(`http://localhost:3000/api/users?email=${user.email}`)
     .then(res => res.json())
-    .then(data => setPrograms(data));
+    .then(data => setOrganisations(data));
   },[user.email])
 
   return (
     <PrivateRoute>
       {
-        programs.length
+        organisations.length
         ?
         <Box width='80%' margin='10px 10%'>
       <Flex direction='row'>
@@ -44,8 +44,8 @@ export default function Dashboard() {
         templateColumns='repeat(auto-fill, minmax(300px, 1fr))'
         my='8'
       >
-        {programs.map((program) => (
-          <DashboardCard key={program._id} program={program}></DashboardCard>
+        {organisations.map((organisation) => (
+          <DashboardCard key={organisation._id} organisation={organisation}></DashboardCard>
         ))}
       </Grid>
     </Box>
