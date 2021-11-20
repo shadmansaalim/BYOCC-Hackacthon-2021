@@ -1,31 +1,28 @@
-import { Container, Input } from "@chakra-ui/react"
+import { Container, Input, Flex, Button } from "@chakra-ui/react"
 import { SearchCard } from "../../components/Search"
-
+import { useState } from 'react'
 export default function Search() {
+  const [search_value, setSearchValue] = useState();
+  const handleChange = (event) =>{
+    setSearchValue(event.target.value);
+
+  }
   return (
     <div>
-      <Container
-        height='1000px'
-        maxW='container.sm'
-        textAlign='center'
-        p={0}
-        mx="auto"
-        style={{
-          backgroundColor: "#F7F7F7",
-        
-        }}
-      >
-        <Container textAlign='center'>
+      <Container maxW={{ base: "", lg: "container.xl" }} mt={3}>
+      <Container textAlign='center'>
+      
           <form>
-            <Input placeholder='Search' bg='white' />
+            <Input value={search_value} onChange={handleChange} placeholder='Search' bg='white'/>
           </form>
-
+         
           <SearchCard />
-          <SearchCard/>
-          <SearchCard/>
+          
 
         </Container>
+
       </Container>
+      
     </div>
   )
 }
