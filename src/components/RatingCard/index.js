@@ -23,15 +23,15 @@ export const RatingCard = ({ ratingData }) => {
           {ratingData.username}
         </Text>
         <Box>
-          {[...Array(5)].map((_, i) => {
-            return (
-              <StarIcon color={i < ratingData.rating ? "green" : "gray.300"} />
-            )
-          })}
+          {[...Array(5)].map((_, i) => (
+            <StarIcon
+              key={i}
+              color={i < ratingData.rating ? "green" : "gray.300"}
+            />
+          ))}
         </Box>
         <Text>{ratingData.text}</Text>
       </VStack>
     </Box>
   )
 }
-

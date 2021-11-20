@@ -2,7 +2,6 @@ import { forwardRef } from "react"
 import { useRouter } from "next/router"
 import {
   Box,
-  IconButton,
   Text,
   Button,
   Drawer,
@@ -63,7 +62,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
                 style={{ borderRadius: "50%" }}
               />
             ) : (
-              <Avatar name={user.displayName} mt='12' size='xl' />
+              <Avatar name={user.displayName} mt='12' size='lg' />
             )}
             <Text fontSize='xl' mt='4'>
               {user.displayName}
@@ -74,6 +73,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
             {routes.map(({ name, href, icon }) => (
               <Link href={href}>
                 <Button
+                  key={name}
                   size='md'
                   height='48px'
                   mb='3'
