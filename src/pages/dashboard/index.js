@@ -13,7 +13,10 @@ import useAuth from "src/hooks/useAuth"
 import { CircularProgress } from "@chakra-ui/progress"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 import { useEffect, useState } from "react"
+import { useRouter } from 'next/router'
+
 export default function Dashboard() {
+  const router = useRouter()
   const { user } = useAuth()
   const [organisations, setOrganisations] = useState([])
 
@@ -32,7 +35,7 @@ export default function Dashboard() {
               My Loyalty Cards
             </Text>
             <Spacer />
-            <Button leftIcon={<AddIcon />} colorScheme='green'>
+            <Button leftIcon={<AddIcon />} colorScheme='green' onClick={()=> router.push(`/programs`)}>
               Add
             </Button>
           </Flex>
