@@ -2,6 +2,7 @@ import { forwardRef } from "react"
 import {
   Box,
   IconButton,
+  Text,
   Button,
   Drawer,
   DrawerBody,
@@ -16,7 +17,10 @@ import {
 import _ from "lodash"
 import { HiOutlineHeart, HiOutlineUser } from "react-icons/hi"
 
+import useAuth from "@hooks/useAuth"
+
 const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
+  const { logOut } = useAuth()
   const routes = [
     {
       name: "programs",
@@ -42,8 +46,8 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
           <DrawerCloseButton />
           <DrawerHeader
             display='flex'
-            justifyContent='space-evenly'
             alignItems='center'
+            justifyContent='space-around'
           >
             <Avatar name='John Doe' />
             John Doe
@@ -53,7 +57,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
             {routes.map(({ name, href, icon }) => (
               <Link
                 display='flex'
-                justifyContent='space-between'
+                alignItems='center'
                 px={2}
                 py={1}
                 rounded='md'
@@ -61,12 +65,22 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
                   textDecoration: "none",
                 }}
                 href={href}
+                fontSize='1.3rem'
               >
                 {icon}
-                {_.upperFirst(name)}
+                <Text ml={4}>{_.upperFirst(name)}</Text>
               </Link>
             ))}
           </DrawerBody>
+          <DrawerFooter
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+          >
+            <Button variant='outline' onClick={logOut}>
+              Log Out
+            </Button>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </div>
