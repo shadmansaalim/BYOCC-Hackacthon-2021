@@ -1,6 +1,12 @@
-import { Container, Box, Text, Heading, Flex, Spacer } from "@chakra-ui/layout"
-import { Input } from "@chakra-ui/react"
-import { Button } from "@chakra-ui/button"
+import {
+  Container,
+  Button,
+  Box,
+  Text,
+  Heading,
+  Flex,
+  Spacer,
+} from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 
 export default function BuyCoffee() {
@@ -11,6 +17,7 @@ export default function BuyCoffee() {
     avgRating: 4,
     img: "https://bit.ly/2Z4KKcF",
   }
+  const uniqueCode = "1234ABC"
 
   return (
     <>
@@ -22,31 +29,36 @@ export default function BuyCoffee() {
       />
 
       <Box width='80%' margin='10px 10%'>
-        <Flex direction='row' alignItems="center">
+        <Flex direction='row' alignItems='center'>
           <Heading as='h1' size='2xl'>
             {business.name}
           </Heading>
 
           <Spacer />
-          
-          <Box style={ {boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)"}} p={3} borderRadius="10px" display="flex" alignItems="center">
-            <StarIcon color='black' mr="2"/>
+
+          <Box
+            style={{ boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)" }}
+            p={3}
+            borderRadius='10px'
+            display='flex'
+            alignItems='center'
+          >
+            <StarIcon color='black' mr='2' />
             <Box as='span'> {business.avgRating.toFixed(1)}</Box>
           </Box>
-          
         </Flex>
 
         <Text mt={2}>{business.descrip}</Text>
 
         <Box mt={5}>
           <form>
-            <Input textAlign='center' placeholder='Enter code' />
+            <Text align='center'>User Unique Code:</Text>
+            <Text fontSize='5xl' textAlign='center'>
+              {uniqueCode}
+            </Text>
             <Flex direction='row' mt={5} justify='center'>
-              <Button width='200px' bg='#D32222' color='white' mr={2}>
-                Cancel
-              </Button>
-              <Button width='200px' bg='#498741' color='white'>
-                Add
+              <Button width='400px' bg='#498741' color='white'>
+                Done
               </Button>
             </Flex>
           </form>

@@ -2,7 +2,6 @@ import { forwardRef } from "react"
 import { useRouter } from "next/router"
 import {
   Box,
-  IconButton,
   Text,
   Button,
   Drawer,
@@ -18,6 +17,7 @@ import {
 } from "@chakra-ui/react"
 import _ from "lodash"
 import { HiOutlineHeart, HiOutlineUser } from "react-icons/hi"
+import { AiOutlineIdcard } from "react-icons/ai"
 
 import useAuth from "@hooks/useAuth"
 
@@ -36,6 +36,11 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
       name: "dashboard",
       href: "/dashboard",
       icon: <HiOutlineUser />,
+    },
+    {
+      name: "cards",
+      href: "/cards",
+      icon: <AiOutlineIdcard />,
     },
   ]
   return (
@@ -63,7 +68,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
                 style={{ borderRadius: "50%" }}
               />
             ) : (
-              <Avatar name={user.displayName} mt='12' size='xl' />
+              <Avatar name={user.displayName} mt='12' size='lg' />
             )}
             <Text fontSize='xl' mt='4'>
               {user.displayName}
@@ -72,7 +77,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
 
           <DrawerBody>
             {routes.map(({ name, href, icon }) => (
-              <Link href={href}>
+              <Link href={href} key={name}>
                 <Button
                   size='md'
                   height='48px'
@@ -83,8 +88,8 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
                   alignItems='center'
                   style={{ color: "black", width: "100%" }}
                 >
-                  <p mb='0'>{_.upperFirst(name)}</p>
                   {icon}
+                  <Text>{_.upperFirst(name)}</Text>
                 </Button>
               </Link>
             ))}

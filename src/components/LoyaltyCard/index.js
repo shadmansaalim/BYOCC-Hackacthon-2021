@@ -23,8 +23,8 @@ export const PlainCard = ({ maxStamps, backgroundClr }) => {
       <Box
         px='28px'
         py='22px'
-        // w="500px"
-        w={{ base: "400px", lg: "500px" }}
+        // w='21rem'
+        w={{ base: "340px", sm: "400px" }}
         background={backgroundClr}
         color='#fff'
         boxSizing='border-box'
@@ -42,10 +42,10 @@ export const PlainCard = ({ maxStamps, backgroundClr }) => {
         <Wrap mt={4} spacing='15px' justify='center'>
           {_.range(1, maxStamps).map((i) => (
             <WrapItem
+              key={i}
               display='flex'
               justifyContent='center'
               alignItems='center'
-              key={i}
               background='#fff'
               w='3.5rem'
               h='3.5rem'
@@ -184,10 +184,10 @@ export const FancyCard = () => {
         >
           {_.range(1, 10).map((i) => (
             <Box
+              key={i}
               display='flex'
               justifyContent='center'
               alignItems='center'
-              key={i}
               color='#000'
             >
               <Text fontSize='45px' color={i <= stamps ? "#7986cb" : "#d4d4d4"}>
