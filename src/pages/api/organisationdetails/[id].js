@@ -7,6 +7,9 @@ export default async function handler(req, res) {
     case "GET":
       return getOrganisation(req, res)
       break
+    case "PUT":
+      return updateOrganisation(req, res)
+      break
   }
 }
 
@@ -24,5 +27,29 @@ async function getOrganisation(req, res) {
   } catch (error) {
     // return the error
     res.json("Error getting programs")
+  }
+}
+
+
+async function updateOrganisation(req, res) {
+  try {
+    // connect to the database
+    let { db } = await connectToDatabase()
+    const organisationCollection = db.collection("organisation")
+    const id = req.query.id
+    const review = req.body;
+    const filter = { _id: ObjectId(id) }
+    const organisation = await organisationCollection.findOne(filter);
+    const options = { upsert: true };
+    const updateDoc = {
+      $set: {
+        reviews: [...organisation.reviews,review]
+      },
+    };
+    const result = await organisationCollection.updateOne(filter, updateDoc,options);
+    res.json(result);
+  } catch (error) {
+    // return the error
+    res.sendStatus(error.status).send("Error getting programs")
   }
 }
