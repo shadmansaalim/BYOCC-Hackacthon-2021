@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef } from "react"
 import {
   Box,
   IconButton,
@@ -10,29 +10,67 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-} from "@chakra-ui/react";
+  Avatar,
+  Link,
+} from "@chakra-ui/react"
+import _ from "lodash"
+import { HiOutlineHeart, HiOutlineUser } from "react-icons/hi"
 
 const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
+  const routes = [
+    {
+      name: "programs",
+      href: "/programs",
+      icon: <HiOutlineHeart />,
+    },
+    {
+      name: "dashboard",
+      href: "",
+      icon: <HiOutlineUser />,
+    },
+  ]
   return (
     <div>
       <Drawer
         isOpen={isOpen}
-        placement="right"
+        placement='right'
         onClose={onClose}
         finalFocusRef={ref}
       >
         <DrawerOverlay />
-        <DrawerContent background="#2f2a23" color="#fff">
+        <DrawerContent background='#2f2a23' color='#fff'>
           <DrawerCloseButton />
-          <DrawerHeader>John Doe</DrawerHeader>
+          <DrawerHeader
+            display='flex'
+            justifyContent='space-evenly'
+            alignItems='center'
+          >
+            <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+            John Doe
+          </DrawerHeader>
 
           <DrawerBody>
-            <div>Hi</div>
+            {routes.map(({ name, href, icon }) => (
+              <Link
+                display='flex'
+                justifyContent='space-between'
+                px={2}
+                py={1}
+                rounded='md'
+                _hover={{
+                  textDecoration: "none",
+                }}
+                href={href}
+              >
+                {icon}
+                {_.upperFirst(name)}
+              </Link>
+            ))}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
     </div>
-  );
-});
+  )
+})
 
-export default Sidebar;
+export default Sidebar
