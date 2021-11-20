@@ -5,6 +5,7 @@ import { CircularProgress } from "@chakra-ui/progress"
 import { PlainCard } from "@components/LoyaltyCard"
 import { RatingCard } from "@components/RatingCard"
 import { RatingForm } from "@components/RatingForm"
+
 import useFirebase from "@hooks/useFirebase"
 import axios from "axios"
 import useAuth from "@hooks/useAuth"
