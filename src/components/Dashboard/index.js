@@ -15,7 +15,8 @@ export const DashboardCard = () => {
       minW='300px'
       borderWidth='1px'
       borderRadius='lg'
-      m='3'
+      mx='auto'
+      my='3'
       _hover={{
         transition: "0.2s ease-out",
         boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)",
@@ -24,7 +25,7 @@ export const DashboardCard = () => {
       _active={{ boxShadow: "none", transform: "none" }}
     >
       <Box
-        height='120px'
+        height='100px'
         width='100%'
         backgroundImage={business.imageUrl}
         backgroundPosition='center center'

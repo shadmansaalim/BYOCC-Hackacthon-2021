@@ -1,4 +1,4 @@
-import { connectToDatabase } from "@lib/mogodb"
+import { connectToDatabase } from "@lib/mongodb"
 
 export default async function handler(req, res) {
   // switch the methods
@@ -30,7 +30,7 @@ async function addUser(req, res) {
     res.status(200).json(result)
   } catch (error) {
     // return the error
-    res.sendStatus(error.status || 404).send("No user found")
+    res.sendStatus(error.status || 404).send("Could not add user to database")
   }
 }
 async function updateUser(req, res) {
