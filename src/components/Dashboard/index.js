@@ -10,7 +10,7 @@ export const DashboardCard = () => {
     }
 
     return (
-        <Box as="button" minW="300px" borderWidth="1px" borderRadius="lg" m="3"  _hover={{ transition: "0.2s ease-out",
+        <Box as="button" minW="300px" borderWidth="1px" borderRadius="lg" mx="auto" my="3"  _hover={{ transition: "0.2s ease-out",
             boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)", transform: "translate(0, -5px)"}}
             _active={{boxShadow: "none", transform: "none"}}
             >
