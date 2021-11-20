@@ -10,12 +10,13 @@ import axios from 'axios'
 export default function BusinessDetails({ data: organisation }) {
   const { img, name, reviews } = organisation[0]
   const firebase = useFirebase()
-  const addProgram = async (organisation) => {
+  const addProgram = async () => {
     const email = firebase.user.email
     
     const program = organisation[0].programs[0]
     
     const res = await axios.put(`http://localhost:3000/api/userData?email=${email}`, {
+      organisationID: organisation[0]._id,
       programName: program.name,
       uniqueCode: "ABC4123",
       maxStamp: program.numStamps,
@@ -43,7 +44,7 @@ export default function BusinessDetails({ data: organisation }) {
               <Button
                 leftIcon={<AddIcon />}
                 colorScheme='green'
-                onClick={() => addProgram(organisation)}
+                onClick={() => addProgram()}
               >
                 Add
               </Button>
