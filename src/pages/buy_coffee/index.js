@@ -11,6 +11,7 @@ export default function BuyCoffee() {
     avgRating: 4,
     img: "https://bit.ly/2Z4KKcF",
   }
+  const uniqueCode = "1234ABC";
 
   return (
     <>
@@ -40,13 +41,12 @@ export default function BuyCoffee() {
 
         <Box mt={5}>
           <form>
-            <Input textAlign='center' placeholder='Enter code' />
+            <Text align='center'>User Unique Code:</Text>
+            <Text fontSize="5xl" textAlign='center'>{uniqueCode}</Text>
             <Flex direction='row' mt={5} justify='center'>
-              <Button width='200px' bg='#D32222' color='white' mr={2}>
-                Cancel
-              </Button>
-              <Button width='200px' bg='#498741' color='white'>
-                Add
+              
+              <Button width='400px' bg='#498741' color='white'>
+                Done
               </Button>
             </Flex>
           </form>
