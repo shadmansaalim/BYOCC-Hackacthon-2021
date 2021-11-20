@@ -77,9 +77,8 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
 
           <DrawerBody>
             {routes.map(({ name, href, icon }) => (
-              <Link href={href}>
+              <Link href={href} key={name}>
                 <Button
-                  key={name}
                   size='md'
                   height='48px'
                   mb='3'
