@@ -59,7 +59,7 @@ const useFirebase = () => {
               "You can now enjoy loyalty programs",
               "success"
             )
-            router.push("/dashboard")
+            router.push("/")
           })
           .catch((error) => {})
       })
@@ -93,7 +93,7 @@ const useFirebase = () => {
         //Add user to db (USING put method because user might login directly using external auth without signing up)
         saveUserToDb(user.email, user.displayName, "PUT")
 
-        router.replace("/dashboard")
+        router.replace("/")
       })
       .catch((error) => {})
       .finally(() => setIsLoading(false))
@@ -106,7 +106,7 @@ const useFirebase = () => {
         setUser(user)
         //Add user to db (USING put method because user might login directly using external auth without signing up)
         saveUserToDb(user.email, user.displayName, "PUT")
-        router.replace("/dashboard")
+        router.replace("/")
       })
       .catch((error) => {})
       .finally(() => setIsLoading(false))
@@ -119,7 +119,7 @@ const useFirebase = () => {
         setUser(user)
         //Add user to db (USING put method because user might login directly using external auth without signing up)
         saveUserToDb(user.email, user.displayName, "PUT")
-        router.replace("/dashboard")
+        router.replace("/")
       })
       .catch((error) => {})
       .finally(() => setIsLoading(false))
@@ -129,7 +129,7 @@ const useFirebase = () => {
     setIsLoading(true)
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        router.replace("/dashboard")
+        router.replace("/")
         toast.success(
           `Welcome back ${auth.currentUser.displayName.split(" ")[0]}`
         )
