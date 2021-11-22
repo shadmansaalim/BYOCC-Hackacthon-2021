@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Input, Text, Flex, Grid, Box } from "@chakra-ui/react"
+import { Input, Text, Flex, Grid, Box ,Container} from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { DashboardCard } from "@components/DashboardCard"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
@@ -13,9 +13,14 @@ export default function Search({ data: searchCards }) {
 
   return (
     <PrivateRoute>
-      <Box width='80%' margin='10px auto'>
+ <Container maxW="container.xl" margin='50px auto'>
+        <Text fontSize="4xl" mb={4} style={{ fontWeight: "bold" }} textAlign="center">
+              Available Programs
+        </Text>
         <Flex direction='row'>
           <Input
+            w={{ base: "100%", md: "70%", lg: "60%", xl: "50%" }}
+            mx="auto"
             value={search_value}
             onChange={handleChange}
             placeholder='Search'
@@ -25,7 +30,10 @@ export default function Search({ data: searchCards }) {
 
         <Grid
           alignItems='center'
-          templateColumns='repeat(auto-fill, minmax(300px, 1fr))'
+          templateColumns={{sm: '1fr', md: 'repeat(2,1fr)',lg: 'repeat(3,1fr)',xl: 'repeat(4,1fr)'}}
+          mt='8'
+          columnGap={6}
+          rowGap={3}
         >
           {searchCards
             .filter((val) => {
@@ -50,7 +58,7 @@ export default function Search({ data: searchCards }) {
               )
             })}
         </Grid>
-      </Box>
+      </Container>
     </PrivateRoute>
   )
 }
