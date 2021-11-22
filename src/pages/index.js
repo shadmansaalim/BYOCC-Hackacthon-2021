@@ -50,6 +50,7 @@ export default function dashboard() {
                 <DashboardCard
                   key={organisation._id}
                   organisation={organisation}
+                  onClick={() => router.push(`/cards/${organisation._id}`)}
                 ></DashboardCard>
             ))}
           </Grid>

@@ -5,11 +5,11 @@ import { CircularProgress } from "@chakra-ui/progress"
 import { PlainCard } from "@components/LoyaltyCard"
 import { RatingCard } from "@components/RatingCard"
 import { RatingForm } from "@components/RatingForm"
-
 import axios from "axios"
 import swal from "sweetalert"
 
 import useAuth from "@hooks/useAuth"
+import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 
 export default function BusinessDetails({ data: organisation }) {
   const { img, name, reviews } = organisation[0]

@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 
 export const DashboardCard = ({ organisation}) => {
   const {_id, name, img, avgRating } = organisation
-const router = useRouter();
+  const router = useRouter();
   return (
     <Box
       as='button'
@@ -20,7 +20,7 @@ const router = useRouter();
         transform: "translate(0, -5px)",
       }}
       _active={{ boxShadow: "none", transform: "none" }}
-      // onClick={() => router.push(`/cards/${id}`)}
+      onClick={onClick}
     >
       <Image
         height='100px'
