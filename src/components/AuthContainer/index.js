@@ -36,7 +36,7 @@ const AuthContainer = ({ children, handleSubmit }) => {
           px={12}
           pt={12}
           pb={24}
-          w={{ base: "90%", sm: "85%", md: "50%", xl: "35%" }}
+          w={{ base: "90%", sm: "85%", md: "50%", xl: "32%" }}
         >
           {children}
         </Stack>
