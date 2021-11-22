@@ -1,14 +1,15 @@
 // import { useState } from "react";
-import { Box } from "@chakra-ui/react"
+import { Box, Image } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
+import { useRouter } from "next/router"
 
-export const DashboardCard = ({ organisation, onClick }) => {
-  const { name, img, avgRating } = organisation
-
+export const DashboardCard = ({ organisation}) => {
+  const {_id, name, img, avgRating } = organisation
+const router = useRouter();
   return (
     <Box
       as='button'
-      minW='300px'
+      width="100%"
       borderWidth='1px'
       borderRadius='lg'
       mx='auto'
@@ -19,13 +20,13 @@ export const DashboardCard = ({ organisation, onClick }) => {
         transform: "translate(0, -5px)",
       }}
       _active={{ boxShadow: "none", transform: "none" }}
-      onClick={onClick}
+      // onClick={() => router.push(`/cards/${id}`)}
     >
-      <Box
+      <Image
         height='100px'
         width='100%'
-        backgroundImage={img}
-        backgroundPosition='center center'
+        objectFit="cover"
+        src={img}
       />
       <Box p='3'>
         <Box display='flex' justifyContent='space-between'>

@@ -1,5 +1,5 @@
 import { AddIcon } from "@chakra-ui/icons"
-import { Button, Grid, Text, Box, Flex, Spacer, Link } from "@chakra-ui/react"
+import { Button, Grid, Text, Box, Flex, Spacer, Link , Container} from "@chakra-ui/react"
 import { DashboardCard } from "@components/DashboardCard"
 import useAuth from "src/hooks/useAuth"
 import { CircularProgress } from "@chakra-ui/progress"
@@ -22,36 +22,38 @@ export default function dashboard() {
   return (
     <PrivateRoute>
       {organisations.length ? (
-        <Box width='80%' margin='10px 10%'>
-          <Flex direction='row'>
-            <Text fontSize='2xl' style={{ fontWeight: "bold" }}>
+        <Container maxW="container.xl" margin='50px auto'>
+          <Flex direction='row' alignItems="center" justifyContent="space-between">
+            <Text fontSize={{ base: "24px", md: "32px", lg: "42px" }} style={{ fontWeight: "bold" }}>
               My Loyalty Cards
             </Text>
-            <Spacer />
             <Button
-              leftIcon={<AddIcon />}
+              rightIcon={<AddIcon />}
               colorScheme='green'
+              variant="outline"
               onClick={() => router.push(`/programs`)}
             >
+            <Text fontSize='xl' m="0">
               Add
+            </Text>
             </Button>
           </Flex>
 
           <Grid
             alignItems='center'
-            templateColumns='repeat(auto-fill, minmax(300px, 1fr))'
-            my='8'
+            templateColumns={{sm: '1fr', md: 'repeat(2,1fr)',lg: 'repeat(3,1fr)',xl: 'repeat(4,1fr)'}}
+            mt='8'
+            columnGap={6}
+            rowGap={3}
           >
             {organisations.map((organisation) => (
-              <Link href='cards/'>
                 <DashboardCard
                   key={organisation._id}
                   organisation={organisation}
                 ></DashboardCard>
-              </Link>
             ))}
           </Grid>
-        </Box>
+        </Container>
       ) : (
         <>
           {organisations === 0 ? (
