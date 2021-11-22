@@ -1,4 +1,4 @@
-import { VStack, Box, Text, Heading, Flex, Spacer } from "@chakra-ui/react"
+import { VStack, Box, Text, Heading, Flex, Spacer , Container} from "@chakra-ui/react"
 import { Button } from "@chakra-ui/button"
 import { AddIcon } from "@chakra-ui/icons"
 import { CircularProgress } from "@chakra-ui/progress"
@@ -7,6 +7,7 @@ import { RatingCard } from "@components/RatingCard"
 import { RatingForm } from "@components/RatingForm"
 import axios from "axios"
 import swal from "sweetalert"
+
 
 import useAuth from "@hooks/useAuth"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
@@ -38,29 +39,33 @@ export default function BusinessDetails({ data: organisation }) {
         <>
           <Box
             height='10em'
-            objectFit='cover'
+            backgroundSize='100% 100%'
+            backgroundRepeat="no-repeat"
             backgroundImage={img}
             backgroundPosition='center center'
           />
 
-          <Box width='80%' margin='10px 10%'>
-            <Flex direction='row'>
-              <Heading as='h1' size='2xl'>
+        <Container maxW="container.xl" margin='50px auto'>
+            <Flex direction='row' alignItems="center" justifyContent="space-between">
+            <Heading as='h1' size='2xl'>
                 {name}
               </Heading>
-              <Spacer />
-              <Button
-                leftIcon={<AddIcon />}
-                colorScheme='green'
-                onClick={() => addProgram()}
-              >
-                Add
-              </Button>
-            </Flex>
+            <Button
+              rightIcon={<AddIcon />}
+              colorScheme='green'
+              variant="outline"
+              onClick={() => addProgram()}
+            >
+            <Text fontSize='xl' m="0">
+              Add
+            </Text>
+            </Button>
+          </Flex>
 
-            <Text p={5}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-              dolor eos tempora nostrum.
+
+
+            <Text my={6}>
+              Buy 9 coffees and get one free
             </Text>
 
             <Box align='center'>
@@ -78,7 +83,7 @@ export default function BusinessDetails({ data: organisation }) {
                 return <RatingCard key={i} review={review} />
               })}
             </VStack>
-          </Box>
+          </Container>
         </>
       ) : (
         <div

@@ -3,7 +3,7 @@ import { Box, Image } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 import { useRouter } from "next/router"
 
-export const DashboardCard = ({ organisation}) => {
+export const DashboardCard = ({ organisation,onClick}) => {
   const {_id, name, img, avgRating } = organisation
   const router = useRouter();
   return (
@@ -23,7 +23,6 @@ export const DashboardCard = ({ organisation}) => {
       onClick={onClick}
     >
       <Image
-        height='100px'
         width='100%'
         objectFit="cover"
         src={img}

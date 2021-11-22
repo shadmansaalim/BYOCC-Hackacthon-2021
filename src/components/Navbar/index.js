@@ -21,7 +21,7 @@ const Navbar = () => {
         color='#fff'
       >
         <Heading>
-          <Link href='/dashboard' _hover='none' _active='none'>
+          <Link href='/' _hover='none' _active='none'>
             BYOCC
           </Link>
         </Heading>
