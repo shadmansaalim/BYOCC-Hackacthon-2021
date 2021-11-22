@@ -1,12 +1,12 @@
 import { useRouter } from "next/router"
 import { useState } from "react"
-import { Input, Button, HStack, Link, Text } from "@chakra-ui/react"
+import { Input, Button, HStack, Text , Box} from "@chakra-ui/react"
 import { FaFacebook, FaTwitter, FaGoogle } from "react-icons/fa"
 
 import useAuth from "@hooks/useAuth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons"
-
+import Link from 'next/link'
 import AuthContainer from "@components/AuthContainer"
 
 export default function Login() {
@@ -54,7 +54,9 @@ export default function Login() {
         Login{" "}
         <FontAwesomeIcon icon={faSignInAlt} style={{ marginLeft: "4px" }} />
       </Button>
-      <Link color='green'>Forgot Password?</Link>
+      <Link href="">
+        <Text color="green">Forgot Password?</Text>
+      </Link>
 
       <p className='divider-text'>
         <span
@@ -91,20 +93,15 @@ export default function Login() {
         >
           Google
         </Button>
-        {/* <Button onClick={() => signInWithTwitter(router)} colorScheme="twitter" leftIcon={<FaTwitter />}>
-                Twitter
-              </Button> */}
       </HStack>
 
-      <label>New User?</label>
-      <Button
-        colorScheme='green'
-        variant='outline'
-        onClick={() => router.push("/signup")}
-      >
-        Create an Account
-        <FontAwesomeIcon icon={faUserPlus} style={{ marginLeft: "20px" }} />
-      </Button>
+      <Box>Don't have an account? <Link href="/signup">
+      <Text color="red"
+      textDecoration="underline"
+      cursor="pointer"
+      >Sign Up</Text>
+      </Link>
+      </Box>
     </AuthContainer>
   )
 }
