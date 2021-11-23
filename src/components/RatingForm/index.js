@@ -55,7 +55,7 @@ export const RatingForm = () => {
   return (
     <>
       <Text m='2' fontWeight='semibold'>
-        Rate Us
+        Rate us on the basis of sustainability
       </Text>
       <form onSubmit={handleReviewSubmit}>
       <Box display='flex'>

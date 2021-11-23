@@ -21,12 +21,12 @@ export const PlainCard = ({numStamps,freeItem, stamps, }) => {
       <Box
         px='28px'
         py='22px'
-        // w='21rem'
-        w={{ base: "340px", sm: "400px" }}
+        w={{ base: "100%", sm: "400px" }}
         background="#171717"
         color='#fff'
         boxSizing='border-box'
         boxShadow='lg'
+        borderRadius="15"
       >
         <Box letterSpacing='1px'>
           <Heading as='h2' size='lg' textTransform='uppercase'>

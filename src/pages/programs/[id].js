@@ -36,46 +36,46 @@ export default function BusinessDetails({ data: program }) {
       {program ? (
         <>
           <Box
-            height='500px'
+            height='600px'
             backgroundSize='100% 100%'
             backgroundRepeat="no-repeat"
             backgroundImage="https://images.theconversation.com/files/122266/original/image-20160512-16422-cydk3l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop"
             backgroundPosition='center center'
           />
 
-        <Container maxW="container.xl" margin='50px auto'>
-            <Flex direction='row' alignItems="center" justifyContent="space-between">
+        <Container maxW="container.xl" margin='auto'>
+
+            <Box p={8} boxShadow="xl" marginTop="-150px" bg="rgb(56, 161, 105)" color="white" borderRadius="20"mx="auto"
+            w={{ base: "100%", sm: "100%", md: "80%"}}
+            >
             <Heading as='h1' size='xl'>
                 {programName}
             </Heading>
-            <Button
-              rightIcon={<AddIcon />}
-              colorScheme='green'
-              variant="outline"
-              onClick={() => addProgram()}
-            >
-            <Text fontSize='xl' m="0">
-              Add
-            </Text>
-            </Button>
-          </Flex>
-
-
-
+           
             <Text my={6}>
               {description}
             </Text>
 
-            <Box align='center'>
+            <Box align='center' mt="6">
               <PlainCard
               numStamps={numStamps}
-              freeItem={freeItem}
               ></PlainCard>
+               <Button
+               mt="4"
+              color="black"
+              onClick={() => addProgram()}
+            >
+            <Text fontSize='xl' m="0">
+              Add Program
+            </Text>
+            </Button>
             </Box>
+            </Box>
+
+            
             <Box mt={10}>
               <RatingForm />
             </Box>
-
             <Heading as='h3' size='lg' mt={10}>
               Reviews
             </Heading>
