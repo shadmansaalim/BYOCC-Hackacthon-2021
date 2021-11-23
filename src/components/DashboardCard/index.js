@@ -9,19 +9,23 @@ export const DashboardCard = ({ organisation,onClick}) => {
   return (
     <Box
       width="100%"
+      height="100%"
       borderWidth='1px'
       borderRadius='lg'
       mx='auto'
       my='3'
+      cursor="pointer"
       _hover={{
         transition: "0.2s ease-out",
         boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)",
         transform: "translate(0, -5px)",
       }}
       _active={{ boxShadow: "none", transform: "none" }}
+      onClick={onClick}
     >
       <Image
-        width='100%'
+         width="100%"
+        height="300px"
         objectFit="cover"
         src={img}
       />
@@ -40,11 +44,11 @@ export const DashboardCard = ({ organisation,onClick}) => {
         <Text fontSize="md">
             {description}
           </Text>
-          <Box textAlign="end">
-          <Button mt="2" onClick={onClick} variant="outline" colorScheme='green'>Read More</Button>
-          </Box>
       </Box>
     
     </Box>
   )
 }
+
+
+
