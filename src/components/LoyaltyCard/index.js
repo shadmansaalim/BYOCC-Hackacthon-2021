@@ -26,7 +26,6 @@ export const PlainCard = ({numStamps,freeItem, stamps, }) => {
         color='#fff'
         boxSizing='border-box'
         boxShadow='lg'
-        borderRadius="15"
       >
         <Box letterSpacing='1px'>
           <Heading as='h2' size='lg' textTransform='uppercase'>

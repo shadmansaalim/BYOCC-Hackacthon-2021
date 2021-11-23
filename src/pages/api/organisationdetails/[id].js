@@ -21,7 +21,7 @@ async function getOrganisation(req, res) {
     // connect to the database
     let { db } = await connectToDatabase()
     const organisationCollection = db.collection("organisation")
-    const id = req.query.id
+    const organisationID = req.query.organisationID
     const query = { _id: ObjectId(id) }
     const cursor = organisationCollection.find(query)
     const result = await cursor.toArray()

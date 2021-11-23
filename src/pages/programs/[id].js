@@ -11,7 +11,7 @@ import useAuth from "@hooks/useAuth"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 
 export default function BusinessDetails({ data: program }) {
-  const { name, img, programName, organisationID,description,numStamps,freeItem} = program[0]
+  const { name, img, banner, programName, organisationID,description,numStamps,freeItem} = program[0]
   const { user } = useAuth()
 
   const addProgram = async () => {
@@ -39,13 +39,13 @@ export default function BusinessDetails({ data: program }) {
             height='600px'
             backgroundSize='100% 100%'
             backgroundRepeat="no-repeat"
-            backgroundImage="https://images.theconversation.com/files/122266/original/image-20160512-16422-cydk3l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop"
+            backgroundImage={banner}
             backgroundPosition='center center'
           />
 
         <Container maxW="container.xl" margin='auto'>
 
-            <Box p={8} boxShadow="xl" marginTop="-150px" bg="rgb(56, 161, 105)" color="white" borderRadius="20"mx="auto"
+            <Box p={8} boxShadow="xl" marginTop="-130px" bg="rgb(56, 161, 105)" color="white" borderRadius="20"mx="auto"
             w={{ base: "100%", sm: "100%", md: "80%"}}
             >
             <Heading as='h1' size='xl'>
@@ -110,6 +110,7 @@ export async function getStaticPaths() {
   const paths = programs.map((program) => ({
     params: { id: program._id },
   }))
+
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.

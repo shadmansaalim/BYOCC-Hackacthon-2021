@@ -15,7 +15,7 @@ const Navbar = () => {
         display='flex'
         alignItems='center'
         justifyContent='space-between'
-        background='#2f2a23'
+        background='#292b2c'
         height='50px'
         width='100%'
         color='#fff'

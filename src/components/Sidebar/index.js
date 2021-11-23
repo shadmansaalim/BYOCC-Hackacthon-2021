@@ -52,7 +52,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
         finalFocusRef={ref}
       >
         <DrawerOverlay />
-        <DrawerContent background='#2f2a23' color='#fff'>
+        <DrawerContent background='#292b2c' color='#fff'>
           <DrawerCloseButton />
           <DrawerHeader
             display='flex'
