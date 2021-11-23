@@ -15,7 +15,7 @@ import { FaCoffee } from "react-icons/fa"
 
 import { updateStampCount } from "@utils/updateStampCount"
 
-export const PlainCard = ({ stamps, maxStamps, backgroundClr }) => {
+export const PlainCard = ({numStamps,freeItem, stamps, }) => {
   return (
     <>
       <Box
@@ -23,7 +23,7 @@ export const PlainCard = ({ stamps, maxStamps, backgroundClr }) => {
         py='22px'
         // w='21rem'
         w={{ base: "340px", sm: "400px" }}
-        background={backgroundClr}
+        background="#171717"
         color='#fff'
         boxSizing='border-box'
         boxShadow='lg'
@@ -37,8 +37,8 @@ export const PlainCard = ({ stamps, maxStamps, backgroundClr }) => {
           </Text>
         </Box>
 
-        <Wrap mt={4} spacing='15px' justify='center'>
-          {_.range(1, maxStamps).map((i) => (
+        <Wrap mt={4} spacing='15px' justify='start'>
+          {_.range(0, numStamps).map((i) => (
             <WrapItem
               key={i}
               display='flex'
@@ -79,10 +79,6 @@ export const PlainCard = ({ stamps, maxStamps, backgroundClr }) => {
   )
 }
 
-PlainCard.defaultProps = {
-  maxStamps: 10,
-  backgroundClr: "#171717",
-}
 
 export const GradientCard = () => {
   const [stamps, setStamps] = useState(0)

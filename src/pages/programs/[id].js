@@ -7,49 +7,47 @@ import { RatingCard } from "@components/RatingCard"
 import { RatingForm } from "@components/RatingForm"
 import axios from "axios"
 import swal from "sweetalert"
-
-
 import useAuth from "@hooks/useAuth"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 
-export default function BusinessDetails({ data: organisation }) {
-  const { img, name, reviews } = organisation[0]
+export default function BusinessDetails({ data: program }) {
+  const { name, img, programName, organisationID,description,numStamps,freeItem} = program[0]
   const { user } = useAuth()
 
   const addProgram = async () => {
-    const program = organisation[0].programs[0]
+    // const program = organisation[0].programs[0]
 
-    const res = await axios.put(
-      `http://localhost:3000/api/userData?email=${user.email}`,
-      {
-        organisationID: organisation[0].organisationID,
-        programName: program.name,
-        uniqueCode: "ABC4123",
-        maxStamp: program.numStamps,
-        numOfStamps: 0,
-      }
-    )
-    if (res.data.modifiedCount > 0) {
-      swal("Successfully Added", "Please check your Dashboard", "success")
-    }
+    // const res = await axios.put(
+    //   `http://localhost:3000/api/userData?email=${user.email}`,
+    //   {
+    //     organisationID: organisation[0].organisationID,
+    //     programName: program.name,
+    //     uniqueCode: "ABC4123",
+    //     maxStamp: program.numStamps,
+    //     numOfStamps: 0,
+    //   }
+    // )
+    // if (res.data.modifiedCount > 0) {
+    //   swal("Successfully Added", "Please check your Dashboard", "success")
+    // }
   }
   return (
     <PrivateRoute>
-      {organisation ? (
+      {program ? (
         <>
           <Box
-            height='10em'
+            height='500px'
             backgroundSize='100% 100%'
             backgroundRepeat="no-repeat"
-            backgroundImage={img}
+            backgroundImage="https://images.theconversation.com/files/122266/original/image-20160512-16422-cydk3l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop"
             backgroundPosition='center center'
           />
 
         <Container maxW="container.xl" margin='50px auto'>
             <Flex direction='row' alignItems="center" justifyContent="space-between">
-            <Heading as='h1' size='2xl'>
-                {name}
-              </Heading>
+            <Heading as='h1' size='xl'>
+                {programName}
+            </Heading>
             <Button
               rightIcon={<AddIcon />}
               colorScheme='green'
@@ -65,11 +63,14 @@ export default function BusinessDetails({ data: organisation }) {
 
 
             <Text my={6}>
-              Buy 9 coffees and get one free
+              {description}
             </Text>
 
             <Box align='center'>
-              <PlainCard />
+              <PlainCard
+              numStamps={numStamps}
+              freeItem={freeItem}
+              ></PlainCard>
             </Box>
             <Box mt={10}>
               <RatingForm />
@@ -79,9 +80,9 @@ export default function BusinessDetails({ data: organisation }) {
               Reviews
             </Heading>
             <VStack>
-              {reviews.map((review, i) => {
+              {/* {reviews.map((review, i) => {
                 return <RatingCard key={i} review={review} />
-              })}
+              })} */}
             </VStack>
           </Container>
         </>
@@ -102,7 +103,7 @@ export default function BusinessDetails({ data: organisation }) {
 }
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetch("http://localhost:3000/api/organisation")
+  const res = await fetch("http://localhost:3000/api/programs")
   const programs = await res.json()
 
   // Get the paths we want to pre-render based on posts
@@ -117,7 +118,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const res = await fetch(
-    `http://localhost:3000/api/organisationdetails/${params.id}`
+    `http://localhost:3000/api/programs/${params.id}`
   )
   const data = await res.json()
 

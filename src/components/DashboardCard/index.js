@@ -29,8 +29,8 @@ export const DashboardCard = ({ organisation,onClick}) => {
         objectFit="cover"
         src={img}
       />
-      <Box p='3' textAlign="start">
-        <Box display='flex' justifyContent='space-between' mb={3}>
+      <Box p="3" textAlign="start" >
+        <Box display='flex' justifyContent='space-between' my={3}>
           <Box fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
             {programName}
           </Box>
