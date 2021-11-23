@@ -30,7 +30,7 @@ export default function Search({ data: searchCards }) {
 
         <Grid
           alignItems='center'
-          templateColumns={{sm: '1fr', md: 'repeat(2,1fr)',lg: 'repeat(3,1fr)',xl: 'repeat(4,1fr)'}}
+          templateColumns={{sm: '1fr', md: 'repeat(2,1fr)',lg: 'repeat(3,1fr)',xl: 'repeat(3,1fr)'}}
           mt='8'
           columnGap={6}
           rowGap={3}
@@ -64,7 +64,7 @@ export default function Search({ data: searchCards }) {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch("http://localhost:3000/api/organisation")
+  const res = await fetch("http://localhost:3000/api/programs")
   const data = await res.json()
 
   return {
