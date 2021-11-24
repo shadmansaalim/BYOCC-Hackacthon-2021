@@ -15,12 +15,26 @@ export default function BusinessDetails({ data: program }) {
   const { name, img, banner, programName, programID, organisationID,description,numStamps,freeItem} = program[0]
   const { user } = useAuth()
   const [reviews,setReviews] = useState([]);
+  const [purchased,setPurchased] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/reviews?organisationID=${organisationID}`)
     .then(res => res.json())
-    .then(data => setReviews(data[0].reviews))
-  },[])
+    .then(data => setReviews(data[0].reviews))  
+  },[organisationID])
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/userData?email=${user.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        for(program of data){
+          if(program.programID === programID){
+            setPurchased(true);
+          }
+        }
+      })
+  }, [user.email])
 
   const addProgram = async () => {
     const res = await axios.put(
@@ -35,6 +49,7 @@ export default function BusinessDetails({ data: program }) {
     )
     console.log(res.data)
     if (res.data.modifiedCount > 0) {
+      setPurchased(true);
       swal("Successfully Added", "Please check your Dashboard", "success")
     }
   }
@@ -68,7 +83,19 @@ export default function BusinessDetails({ data: program }) {
               numStamps={numStamps}
               freeItem={freeItem}
               ></PlainCard>
-               <Button
+               {
+                 purchased ?
+              <Button
+              disabled
+               mt="4"
+              color="black"
+            >
+            <Text fontSize='xl' m="0">
+              Program Added
+            </Text>
+            </Button>
+                 :
+                 <Button
                mt="4"
               color="black"
               onClick={() => addProgram()}
@@ -77,6 +104,7 @@ export default function BusinessDetails({ data: program }) {
               Add Program
             </Text>
             </Button>
+               }
             </Box>
             </Box>
 

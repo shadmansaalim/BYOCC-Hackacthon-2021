@@ -11,17 +11,17 @@ import { useRouter } from "next/router"
 export default function dashboard() {
   const router = useRouter()
   const { user } = useAuth()
-  const [organisations, setOrganisations] = useState([])
+  const [programs, setPrograms] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/userData?email=${user.email}`)
       .then((res) => res.json())
-      .then((data) => setOrganisations(data))
+      .then((data) => setPrograms(data))
   }, [user.email])
 
   return (
     <PrivateRoute>
-      {organisations.length ? (
+      {programs.length ? (
         <Container maxW="container.xl" margin='50px auto'>
           <Flex direction='row' alignItems="center" justifyContent="space-between">
             <Text fontSize={{ base: "24px", md: "32px", lg: "42px" }} style={{ fontWeight: "bold" }}>
@@ -46,18 +46,18 @@ export default function dashboard() {
             columnGap={6}
             rowGap={3}
           >
-            {organisations.map((organisation) => (
+            {programs.map((program) => (
                 <DashboardCard
-                  key={organisation._id}
-                  organisation={organisation}
-                  onClick={() => router.push(`/cards/${organisation._id}`)}
+                  key={program._id}
+                  program={program}
+                  onClick={() => router.push(`/cards/${program._id}`)}
                 ></DashboardCard>
             ))}
           </Grid>
         </Container>
       ) : (
         <>
-          {organisations === 0 ? (
+          {program === 0 ? (
             <div
               style={{
                 display: "flex",

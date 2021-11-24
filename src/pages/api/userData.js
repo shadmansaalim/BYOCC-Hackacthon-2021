@@ -27,8 +27,12 @@ async function getUserData(req, res) {
     const query1 = { email: userEmail }
     const user = await usersCollection.findOne(query1)
     const userPrograms = user?.addedPrograms
-    if (userPrograms) {
-      const query2 = { programID: { $in: userPrograms } }
+    if (userPrograms.length) {
+      let ids = [];
+      userPrograms.forEach(program => {
+      ids.push(program.programID)
+      });
+      const query2 = { programID: { $in: ids } }
       const programs = await programsCollection.find(query2).toArray()
       res.status(200).json(programs)
     } else {
