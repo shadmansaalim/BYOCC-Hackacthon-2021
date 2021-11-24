@@ -40,12 +40,12 @@ export default function dashboard() {
           </Flex>
 
           <Grid
-            alignItems='center'
-            templateColumns={{sm: '1fr', md: 'repeat(2,1fr)',lg: 'repeat(3,1fr)',xl: 'repeat(4,1fr)'}}
-            mt='8'
-            columnGap={6}
-            rowGap={3}
-          >
+          alignItems='center'
+          templateColumns={{sm: '1fr', md: 'repeat(2,1fr)',lg: 'repeat(3,1fr)',xl: 'repeat(3,1fr)'}}
+          mt='8'
+          columnGap={6}
+          rowGap={3}
+        >
             {programs.map((program) => (
                 <DashboardCard
                   key={program._id}
@@ -57,7 +57,7 @@ export default function dashboard() {
         </Container>
       ) : (
         <>
-          {program === 0 ? (
+          {programs === 0 ? (
             <div
               style={{
                 display: "flex",

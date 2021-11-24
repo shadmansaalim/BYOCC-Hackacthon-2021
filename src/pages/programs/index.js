@@ -52,7 +52,7 @@ export default function Search({ data: searchCards }) {
               return (
                 <DashboardCard
                   key={data._id}
-                  organisation={data}
+                  program={data}
                   onClick={() => router.push(`/programs/${data._id}`)}
                 />
               )

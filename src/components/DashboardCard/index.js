@@ -3,9 +3,9 @@ import { Box, Image, Text,Button} from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 import { useRouter } from "next/router"
 
-export const DashboardCard = ({ organisation,onClick}) => {
-  const {_id, name,description, img, avgRating, programName } = organisation
-  const router = useRouter();
+export const DashboardCard = ({ program,onClick}) => {
+  const {_id, name,description, img, avgRating, programName } = program
+  const router = useRouter();program
   return (
     <Box
       width="100%"
