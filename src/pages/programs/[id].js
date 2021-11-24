@@ -9,10 +9,18 @@ import axios from "axios"
 import swal from "sweetalert"
 import useAuth from "@hooks/useAuth"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
+import { useEffect, useState } from "react"
 
 export default function BusinessDetails({ data: program }) {
   const { name, img, banner, programName, organisationID,description,numStamps,freeItem} = program[0]
   const { user } = useAuth()
+  const [reviews,setReviews] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/reviews?organisationID=${organisationID}`)
+    .then(res => res.json())
+    .then(data => setReviews(data[0].reviews))
+  },[])
 
   const addProgram = async () => {
     // const program = organisation[0].programs[0]
@@ -33,7 +41,7 @@ export default function BusinessDetails({ data: program }) {
   }
   return (
     <PrivateRoute>
-      {program ? (
+      {program? (
         <>
           <Box
             height='600px'
@@ -80,9 +88,9 @@ export default function BusinessDetails({ data: program }) {
               Reviews
             </Heading>
             <VStack>
-              {/* {reviews.map((review, i) => {
+             {reviews.map((review, i) => {
                 return <RatingCard key={i} review={review} />
-              })} */}
+              })} 
             </VStack>
           </Container>
         </>
