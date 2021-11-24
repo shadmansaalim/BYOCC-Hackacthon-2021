@@ -12,7 +12,7 @@ import PrivateRoute from "src/PrivateRoute/PrivateRoute"
 import { useEffect, useState } from "react"
 
 export default function BusinessDetails({ data: program }) {
-  const { name, img, banner, programName, organisationID,description,numStamps,freeItem} = program[0]
+  const { name, img, banner, programName, programID, organisationID,description,numStamps,freeItem} = program[0]
   const { user } = useAuth()
   const [reviews,setReviews] = useState([]);
 
@@ -23,18 +23,17 @@ export default function BusinessDetails({ data: program }) {
   },[])
 
   const addProgram = async () => {
-    const program = organisation[0].programs[0]
-
     const res = await axios.put(
       `http://localhost:3000/api/userData?email=${user.email}`,
       {
-        organisationID: organisation[0].organisationID,
-        programName: program.name,
-        uniqueCode: "ABC4123",
-        maxStamp: program.numStamps,
-        numOfStamps: 0,
+        programID: programID,
+        programName: name,
+        uniqueCode: Math.floor((Math.random()*1000000)+1),
+        maxStamp: numStamps,
+        currentStampCount: 0,
       }
     )
+    console.log(res.data)
     if (res.data.modifiedCount > 0) {
       swal("Successfully Added", "Please check your Dashboard", "success")
     }

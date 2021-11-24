@@ -28,7 +28,7 @@ async function getUserData(req, res) {
     const user = await usersCollection.findOne(query1)
     const userPrograms = user?.addedPrograms
     if (userPrograms) {
-      const query2 = { organisationID: { $in: userPrograms } }
+      const query2 = { programID: { $in: userPrograms } }
       const programs = await programsCollection.find(query2).toArray()
       res.status(200).json(programs)
     } else {
@@ -45,22 +45,27 @@ async function updateUserData(req, res) {
     let { db } = await connectToDatabase()
     const usersCollection = db.collection("users")
     const userEmail = req.query.email
-    const organisationID = req.body.organisationID
+    const program = req.body
     const filter = { email: userEmail }
     const user = await usersCollection.findOne(filter)
-    console.log(user)
-    const addedOrganisations = user.addedOrganisations
-    const options = { upsert: true }
-    const updateDoc = {
-      $set: {
-        addedOrganisations: [...addedOrganisations, organisationID],
-        programName: req.body.programName,
-        uniqueCode: req.body.uniqueCode,
-        maxStamp: req.body.maxStamp,
-        numOfStamps: req.body.numOfStamps,
-      },
+    const userPrograms = user?.addedPrograms
+    let result;
+    if(userPrograms){
+      const updateDoc = {
+        $set: {
+          addedPrograms: [...userPrograms,program],
+        },
+      }
+      result = await usersCollection.updateOne(filter, updateDoc)
     }
-    const result = await usersCollection.updateOne(filter, updateDoc, options)
+    else{
+      const updateDoc = {
+        $set: {
+          addedPrograms: [program],
+        },
+      }
+      result = await usersCollection.updateOne(filter, updateDoc)
+    }
     console.log(result)
     res.json(result)
   } catch (error) {
@@ -68,19 +73,3 @@ async function updateUserData(req, res) {
     res.send("Could not add user to database")
   }
 }
-
-// const users = [
-//   {
-//     email: "test123@gmail.com",
-//     displayName: "Test Account",
-//     addedOrganisations: ["o1", "o2"],
-//     numOfStamps: 0
-//   },
-//   {
-//     email: "test2@gmail.com",
-//     displayName: "Test Account",
-//     addedOrganisations: ["o1"],
-//     numOfStamps: 0
-//   }
-
-// ]
