@@ -22,17 +22,15 @@ async function getUserData(req, res) {
     // connect to the database
     let { db } = await connectToDatabase()
     const usersCollection = db.collection("users")
-    const organisationCollection = db.collection("organisation")
+    const programsCollection = db.collection("programs")
     const userEmail = req.query.email
     const query1 = { email: userEmail }
     const user = await usersCollection.findOne(query1)
-
-    const userOrganisations = user?.addedOrganisations
-    if (userOrganisations) {
-      const query2 = { organisationID: { $in: userOrganisations } }
-      const organisations = await organisationCollection.find(query2).toArray()
-
-      res.status(200).json(organisations)
+    const userPrograms = user?.addedPrograms
+    if (userPrograms) {
+      const query2 = { organisationID: { $in: userPrograms } }
+      const programs = await programsCollection.find(query2).toArray()
+      res.status(200).json(programs)
     } else {
       res.status(200).json(0)
     }

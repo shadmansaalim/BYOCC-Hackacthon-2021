@@ -23,21 +23,21 @@ export default function BusinessDetails({ data: program }) {
   },[])
 
   const addProgram = async () => {
-    // const program = organisation[0].programs[0]
+    const program = organisation[0].programs[0]
 
-    // const res = await axios.put(
-    //   `http://localhost:3000/api/userData?email=${user.email}`,
-    //   {
-    //     organisationID: organisation[0].organisationID,
-    //     programName: program.name,
-    //     uniqueCode: "ABC4123",
-    //     maxStamp: program.numStamps,
-    //     numOfStamps: 0,
-    //   }
-    // )
-    // if (res.data.modifiedCount > 0) {
-    //   swal("Successfully Added", "Please check your Dashboard", "success")
-    // }
+    const res = await axios.put(
+      `http://localhost:3000/api/userData?email=${user.email}`,
+      {
+        organisationID: organisation[0].organisationID,
+        programName: program.name,
+        uniqueCode: "ABC4123",
+        maxStamp: program.numStamps,
+        numOfStamps: 0,
+      }
+    )
+    if (res.data.modifiedCount > 0) {
+      swal("Successfully Added", "Please check your Dashboard", "success")
+    }
   }
   return (
     <PrivateRoute>
