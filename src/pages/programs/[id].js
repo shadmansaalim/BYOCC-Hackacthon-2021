@@ -67,6 +67,7 @@ export default function BusinessDetails({ data: program }) {
             <Box align='center' mt="6">
               <PlainCard
               numStamps={numStamps}
+              freeItem={freeItem}
               ></PlainCard>
                <Button
                mt="4"
@@ -84,14 +85,20 @@ export default function BusinessDetails({ data: program }) {
             <Box mt={10}>
               <RatingForm />
             </Box>
-            <Heading as='h3' size='lg' mt={10}>
-              Reviews
-            </Heading>
+           {
+             reviews.length > 0
+             &&
+             <>
+             <Heading as='h3' size='lg' mt={10} mb={4}>
+             Customer Feedbacks
+             </Heading>
             <VStack>
-             {reviews.map((review, i) => {
-                return <RatingCard key={i} review={review} />
-              })} 
+            {reviews.map((review, i) => {
+               return <RatingCard key={i} review={review} />
+             })} 
             </VStack>
+             </>
+           }
           </Container>
         </>
       ) : (

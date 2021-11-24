@@ -62,7 +62,7 @@ export const PlainCard = ({numStamps,freeItem, stamps, }) => {
             borderRadius='50px'
             fontSize='.8em'
           >
-            <span>Free coffee!</span>
+            <span>Free Food!</span>
           </WrapItem>
         </Wrap>
       </Box>
