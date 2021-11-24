@@ -8,12 +8,11 @@ import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 toast.configure()
 
-export const RatingForm = () => {
+export const RatingForm = ({id}) => {
   const {user} = useAuth();
   const [rating, setRating] = useState(null)
   const [hover, setHover] = useState(null)
   const router = useRouter();
-  const id = router.query.id ;
 
   const [value, setValue] = useState("")
 
@@ -31,7 +30,7 @@ export const RatingForm = () => {
       text: value
     }
     e.preventDefault();
-    fetch(`http://localhost:3000/api/organisationdetails/${id}`, {
+    fetch(`http://localhost:3000/api/reviews/${id}`, {
       method: 'PUT',
       headers: {
         "content-type":"application/json"

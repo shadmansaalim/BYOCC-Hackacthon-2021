@@ -83,7 +83,9 @@ export default function BusinessDetails({ data: program }) {
 
             
             <Box mt={10}>
-              <RatingForm />
+              <RatingForm 
+              id={organisationID}
+              />
             </Box>
            {
              reviews.length > 0
