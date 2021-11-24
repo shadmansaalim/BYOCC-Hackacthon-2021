@@ -23,21 +23,11 @@ export default function dashboard() {
     <PrivateRoute>
       {programs.length ? (
         <Container maxW="container.xl" margin='50px auto'>
-          <Flex direction='row' alignItems="center" justifyContent="space-between">
+          <Box>
             <Text fontSize={{ base: "24px", md: "32px", lg: "42px" }} style={{ fontWeight: "bold" }}>
               My Loyalty Cards
             </Text>
-            <Button
-              rightIcon={<AddIcon />}
-              colorScheme='green'
-              variant="outline"
-              onClick={() => router.push(`/programs`)}
-            >
-            <Text fontSize='xl' m="0">
-              Add
-            </Text>
-            </Button>
-          </Flex>
+          </Box>
 
           <Grid
           alignItems='center'
@@ -50,7 +40,6 @@ export default function dashboard() {
                 <DashboardCard
                   key={program._id}
                   program={program}
-                  onClick={() => router.push(`/cards/${program._id}`)}
                 ></DashboardCard>
             ))}
           </Grid>
@@ -87,3 +76,4 @@ export default function dashboard() {
     </PrivateRoute>
   )
 }
+

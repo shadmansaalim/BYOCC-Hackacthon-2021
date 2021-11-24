@@ -1,11 +1,12 @@
 // import { useState } from "react";
-import { Box, Image, Text,Button} from "@chakra-ui/react"
+import { Box, Image, Text,Button, useDisclosure,Modal,ModalOverlay,ModalContent,ModalHeader,ModalCloseButton,ModalBody,ModalFooter} from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 import { useRouter } from "next/router"
-
+import { CardBody } from "@components/LoyaltyCard"
 export const DashboardCard = ({ program,onClick}) => {
-  const {_id, name,description, img, avgRating, programName } = program
-  const router = useRouter();program
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {_id, name,description, img, avgRating, programName,numStamps } = program
+  const router = useRouter();
   return (
     <Box
       width="100%"
@@ -21,7 +22,7 @@ export const DashboardCard = ({ program,onClick}) => {
         transform: "translate(0, -5px)",
       }}
       _active={{ boxShadow: "none", transform: "none" }}
-      onClick={onClick}
+      onClick={onClick || onOpen}
     >
       <Image
          width="100%"
@@ -45,10 +46,33 @@ export const DashboardCard = ({ program,onClick}) => {
             {description}
           </Text>
       </Box>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <CardBody 
+            numStamps={numStamps}
+            />
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     
     </Box>
   )
 }
+
+
+
 
 
 
