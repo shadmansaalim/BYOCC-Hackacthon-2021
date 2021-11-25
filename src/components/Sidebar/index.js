@@ -36,12 +36,7 @@ const Sidebar = forwardRef(({ isOpen, onClose }, ref) => {
       name: "dashboard",
       href: "/dashboard",
       icon: <HiOutlineUser />,
-    },
-    {
-      name: "cards",
-      href: "/cards",
-      icon: <AiOutlineIdcard />,
-    },
+    }
   ]
   return (
     <div>
