@@ -55,19 +55,37 @@ async function updateUserData(req, res) {
     // connect to the database
     let { db } = await connectToDatabase()
     const usersCollection = db.collection("users")
+    const programID = req?.query?.programID
     const userEmail = req.query.email
-    const program = req.body
     const filter = { email: userEmail }
     const user = await usersCollection.findOne(filter)
     const userPrograms = user?.addedPrograms
     let result;
     if(userPrograms){
-      const updateDoc = {
-        $set: {
-          addedPrograms: [...userPrograms,program],
-        },
+      if(programID){
+        const program = userPrograms.find(program => program.programID === programID);
+        const stamp = req.body;
+        program.currentStampCount = stamp;
+        const programs = userPrograms.filter(program => program.programID !== programID);
+      
+        const updateDoc = {
+            $set: {
+               addedPrograms: [...programs,program],
+            },
+        }
+        result = await usersCollection.updateOne(filter, updateDoc)
+        console.log(result);
       }
-      result = await usersCollection.updateOne(filter, updateDoc)
+      else{
+        const program = req.body
+        const updateDoc = {
+           $set: {
+             addedPrograms: [...userPrograms,program],
+           },
+        }
+        result = await usersCollection.updateOne(filter, updateDoc)
+      }
+      
     }
     else{
       const updateDoc = {
@@ -77,7 +95,6 @@ async function updateUserData(req, res) {
       }
       result = await usersCollection.updateOne(filter, updateDoc)
     }
-    console.log(result)
     res.json(result)
   } catch (error) {
     // return the error
