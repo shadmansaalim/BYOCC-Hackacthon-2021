@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import _ from "lodash"
 import {
   Box,
@@ -74,7 +74,8 @@ export const PlainCard = ({numStamps,stamps}) => {
 
 export const CardBody = ({numStamps}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [stamps, setStamps] = useState(0)
+  const [stamps, setStamps] = useState(-1)
+  
   return(
     <Box>
     <VStack align='center' mt={5}>
