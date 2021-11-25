@@ -14,12 +14,16 @@ import {
 import { GiCupcake } from "react-icons/gi"
 import { AiOutlineCheck } from "react-icons/ai"
 import { FaCoffee } from "react-icons/fa"
-
 import { updateStampCount } from "@utils/updateStampCount"
 import CodeModal from "@components/CodeModal"
 
-export const PlainCard = ({numStamps, stamps, }) => {
-  return (
+
+export const CardBody = ({numStamps}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [stamps, setStamps] = useState(0)
+  return(
+    <Box>
+    <VStack align='center' mt={5}>
     <>
       <Box
         px='28px'
@@ -70,20 +74,7 @@ export const PlainCard = ({numStamps, stamps, }) => {
         </Wrap>
       </Box>
     </>
-  )
-}
-
-
-export const CardBody = ({numStamps}) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [stamps, setStamps] = useState(0)
-  return(
-    <Box>
-    <VStack align='center' mt={5}>
-          <PlainCard
-           numStamps={numStamps}
-           stamps={stamps} />
-          <VStack align='center' mt={9}>
+          <VStack align='center' py={4}>
             <Button
               h='45px'
               w='350px'

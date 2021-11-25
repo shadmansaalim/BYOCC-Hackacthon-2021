@@ -50,20 +50,13 @@ export const DashboardCard = ({ program,onClick}) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>{programName}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <CardBody 
             numStamps={numStamps}
             />
           </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     
