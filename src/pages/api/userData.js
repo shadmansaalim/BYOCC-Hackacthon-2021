@@ -23,18 +23,25 @@ async function getUserData(req, res) {
     let { db } = await connectToDatabase()
     const usersCollection = db.collection("users")
     const programsCollection = db.collection("programs")
+    const programID = req?.query?.programID
     const userEmail = req.query.email
     const query1 = { email: userEmail }
     const user = await usersCollection.findOne(query1)
     const userPrograms = user?.addedPrograms
     if (userPrograms.length) {
-      let ids = [];
+      if(programID){
+        const program = userPrograms.filter(program => program.programID === programID);
+        res.status(200).json(program);
+      }
+      else{
+        let ids = [];
       userPrograms.forEach(program => {
       ids.push(program.programID)
       });
       const query2 = { programID: { $in: ids } }
       const programs = await programsCollection.find(query2).toArray()
       res.status(200).json(programs)
+      }
     } else {
       res.status(200).json(0)
     }

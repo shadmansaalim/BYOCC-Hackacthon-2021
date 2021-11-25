@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import { CardBody } from "@components/LoyaltyCard"
 export const DashboardCard = ({ program,onClick}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const {_id, name,description, img, avgRating, programName,numStamps } = program
+  const {_id, name,description, img, avgRating, programName, programID,numStamps } = program
   const router = useRouter();
   return (
     <Box
@@ -54,6 +54,7 @@ export const DashboardCard = ({ program,onClick}) => {
           <ModalCloseButton />
           <ModalBody>
             <CardBody 
+            programID={programID}
             numStamps={numStamps}
             />
           </ModalBody>

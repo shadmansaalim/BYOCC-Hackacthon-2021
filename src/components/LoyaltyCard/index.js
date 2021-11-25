@@ -16,6 +16,7 @@ import { AiOutlineCheck } from "react-icons/ai"
 import { FaCoffee } from "react-icons/fa"
 import { updateStampCount } from "@utils/updateStampCount"
 import CodeModal from "@components/CodeModal"
+import useAuth from "@hooks/useAuth"
 
 export const PlainCard = ({numStamps,stamps}) => {
   return(
@@ -72,10 +73,15 @@ export const PlainCard = ({numStamps,stamps}) => {
   )
 }
 
-export const CardBody = ({numStamps}) => {
+export const CardBody = ({numStamps,programID}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [stamps, setStamps] = useState(-1)
-  
+  const {user} = useAuth();
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/userData?email=${user.email}&programID=${programID}`)
+    .then(res => res.json())
+    .then(data => setStamps(data[0].currentStampCount));
+  },[programID])
   return(
     <Box>
     <VStack align='center' mt={5}>
