@@ -17,13 +17,8 @@ import { FaCoffee } from "react-icons/fa"
 import { updateStampCount } from "@utils/updateStampCount"
 import CodeModal from "@components/CodeModal"
 
-
-export const CardBody = ({numStamps}) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [stamps, setStamps] = useState(0)
+export const PlainCard = ({numStamps,stamps}) => {
   return(
-    <Box>
-    <VStack align='center' mt={5}>
     <>
       <Box
         px='28px'
@@ -74,6 +69,16 @@ export const CardBody = ({numStamps}) => {
         </Wrap>
       </Box>
     </>
+  )
+}
+
+export const CardBody = ({numStamps}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [stamps, setStamps] = useState(0)
+  return(
+    <Box>
+    <VStack align='center' mt={5}>
+        <PlainCard numStamps={numStamps} stamps={stamps}/>
           <VStack align='center' py={4}>
             <Button
               h='45px'
