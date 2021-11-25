@@ -52,7 +52,7 @@ export const PlainCard = ({numStamps,stamps}) => {
               borderRadius='50px'
               color='#000'
             >
-              {i <= stamps ? <AiOutlineCheck /> : ""}
+              {i < stamps ? <AiOutlineCheck /> : ""}
             </WrapItem>
           ))}
           <WrapItem
