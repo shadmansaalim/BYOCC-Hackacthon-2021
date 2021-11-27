@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Input, Text, Flex, Grid, Box ,Container} from "@chakra-ui/react"
+import { Input, Text, Flex, Grid, Container} from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { DashboardCard } from "@components/DashboardCard"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"

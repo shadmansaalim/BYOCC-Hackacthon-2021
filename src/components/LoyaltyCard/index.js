@@ -4,16 +4,13 @@ import {
   Box,
   Wrap,
   WrapItem,
-  Grid,
   Text,
   Heading,
   Button,
   VStack,
   useDisclosure
 } from "@chakra-ui/react"
-import { GiCupcake } from "react-icons/gi"
 import { AiOutlineCheck } from "react-icons/ai"
-import { FaCoffee } from "react-icons/fa"
 import CodeModal from "@components/CodeModal"
 import useAuth from "@hooks/useAuth"
 

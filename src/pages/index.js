@@ -1,5 +1,4 @@
-import { AddIcon } from '@chakra-ui/icons'
-import { Button, Grid, Text, Box, Flex, Spacer, Link, Container } from '@chakra-ui/react'
+import {  Grid, Text, Box, Container } from '@chakra-ui/react'
 import { DashboardCard } from '@components/DashboardCard'
 import useAuth from 'src/hooks/useAuth'
 import { CircularProgress } from '@chakra-ui/progress'

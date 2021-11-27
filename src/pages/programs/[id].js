@@ -1,6 +1,5 @@
-import { VStack, Box, Text, Heading, Flex, Spacer , Container} from "@chakra-ui/react"
+import { VStack, Box, Text, Heading, Container} from "@chakra-ui/react"
 import { Button } from "@chakra-ui/button"
-import { AddIcon } from "@chakra-ui/icons"
 import { CircularProgress } from "@chakra-ui/progress"
 import { PlainCard } from "@components/LoyaltyCard"
 import { RatingCard } from "@components/RatingCard"

@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import useAuth from "../../hooks/useAuth"
 import swal from "sweetalert"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons"
+import {  faUserPlus } from "@fortawesome/free-solid-svg-icons"
 import AuthContainer from "@components/AuthContainer"
 import Link from 'next/link'
 

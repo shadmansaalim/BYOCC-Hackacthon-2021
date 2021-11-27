@@ -3,7 +3,6 @@ import { Box, Button, Text, Textarea } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 import { useRouter } from "next/router"
 import useAuth from "@hooks/useAuth"
-import swal from "sweetalert"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 toast.configure()

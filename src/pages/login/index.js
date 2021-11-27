@@ -1,11 +1,11 @@
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { Input, Button, HStack, Text , Box} from "@chakra-ui/react"
-import { FaFacebook, FaTwitter, FaGoogle } from "react-icons/fa"
+import { FaFacebook,  FaGoogle } from "react-icons/fa"
 
 import useAuth from "@hooks/useAuth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons"
+import { faSignInAlt} from "@fortawesome/free-solid-svg-icons"
 import Link from 'next/link'
 import AuthContainer from "@components/AuthContainer"
 
