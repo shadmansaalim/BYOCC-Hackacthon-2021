@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { Box, IconButton, Heading, useDisclosure } from "@chakra-ui/react"
+import { Box, IconButton, Heading, Link, useDisclosure } from "@chakra-ui/react"
 import { HamburgerIcon } from "@chakra-ui/icons"
 
 import Sidebar from "@components/Sidebar"
@@ -15,12 +15,16 @@ const Navbar = () => {
         display='flex'
         alignItems='center'
         justifyContent='space-between'
-        background='#2f2a23'
+        background='#292b2c'
         height='50px'
         width='100%'
         color='#fff'
       >
-        <Heading>BYOCC</Heading>
+        <Heading>
+          <Link href='/' _hover='none' _active='none'>
+            BYOCC
+          </Link>
+        </Heading>
         <IconButton
           ref={btnRef}
           onClick={onOpen}

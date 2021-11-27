@@ -1,12 +1,12 @@
 import { useState } from "react"
-import { Input, Button, Checkbox, Text } from "@chakra-ui/react"
+import { Input, Button, Checkbox, Text,Box } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import useAuth from "../../hooks/useAuth"
 import swal from "sweetalert"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons"
-
 import AuthContainer from "@components/AuthContainer"
+import Link from 'next/link'
 
 export default function Signup() {
   const router = useRouter()
@@ -45,7 +45,7 @@ export default function Signup() {
 
   return (
     <AuthContainer handleSubmit={handleSignUpSubmit}>
-      <h4 style={{ color: "#000" }}>Sign Up</h4>
+      <h4 style={{ color: "#000" }}>Please Sign Up To Continue</h4>
       <Input
         type='text'
         placeholder='First Name'
@@ -94,7 +94,7 @@ export default function Signup() {
         bg='white'
         required
       />
-      <Checkbox colorScheme='green' color='#000' required>
+      <Checkbox defaultIsChecked colorScheme='green' color='#000' required>
         I agree to the Terms and Conditions
       </Checkbox>
 
@@ -102,16 +102,14 @@ export default function Signup() {
         Sign Up
         <FontAwesomeIcon icon={faUserPlus} style={{ marginLeft: "4px" }} />
       </Button>
-      <Text color='#000'>Have an Account?</Text>
-
-      <Button
-        colorScheme='green'
-        variant='outline'
-        onClick={() => router.push("/login")}
-      >
-        Login
-        <FontAwesomeIcon icon={faSignInAlt} style={{ marginLeft: "4px" }} />
-      </Button>
+      
+      <Box style={{marginTop: '30px'}}>Already a member? <Link href="/login">
+      <Text color="green"
+      textDecoration="underline"
+      cursor="pointer"
+      >Login</Text>
+      </Link>
+      </Box>
     </AuthContainer>
   )
 }

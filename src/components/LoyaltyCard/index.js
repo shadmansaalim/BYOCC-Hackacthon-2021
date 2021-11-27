@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import _ from "lodash"
 import {
   Box,
@@ -8,24 +8,23 @@ import {
   Text,
   Heading,
   Button,
+  VStack,
+  useDisclosure
 } from "@chakra-ui/react"
 import { GiCupcake } from "react-icons/gi"
 import { AiOutlineCheck } from "react-icons/ai"
 import { FaCoffee } from "react-icons/fa"
+import CodeModal from "@components/CodeModal"
+import useAuth from "@hooks/useAuth"
 
-import { updateStampCount } from "@utils/updateStampCount"
-
-export const PlainCard = ({ maxStamps, backgroundClr }) => {
-  const [stamps, setStamps] = useState(0)
-
-  return (
+export const PlainCard = ({numStamps,stamps}) => {
+  return(
     <>
       <Box
         px='28px'
         py='22px'
-        // w="500px"
-        w={{ base: "400px", lg: "500px" }}
-        background={backgroundClr}
+        w={{ base: "100%", sm: "400px" }}
+        background="#171717"
         color='#fff'
         boxSizing='border-box'
         boxShadow='lg'
@@ -39,20 +38,20 @@ export const PlainCard = ({ maxStamps, backgroundClr }) => {
           </Text>
         </Box>
 
-        <Wrap mt={4} spacing='15px' justify='center'>
-          {_.range(1, maxStamps).map((i) => (
+        <Wrap mt={4} spacing='15px' justify='start'>
+          {_.range(0, numStamps).map((i) => (
             <WrapItem
+              key={i}
               display='flex'
               justifyContent='center'
               alignItems='center'
-              key={i}
               background='#fff'
               w='3.5rem'
               h='3.5rem'
               borderRadius='50px'
               color='#000'
             >
-              {i <= stamps ? <AiOutlineCheck /> : ""}
+              {i < stamps ? <AiOutlineCheck /> : ""}
             </WrapItem>
           ))}
           <WrapItem
@@ -65,190 +64,61 @@ export const PlainCard = ({ maxStamps, backgroundClr }) => {
             borderRadius='50px'
             fontSize='.8em'
           >
-            <span>Free coffee!</span>
+            <span>Free Food!</span>
           </WrapItem>
         </Wrap>
       </Box>
-      {/*
-      <Button
-        colorScheme='teal'
-        onClick={() => updateStampCount(stamps, setStamps, 9)}
-      >
-        Buy coffee
-      </Button>
-      */}
     </>
   )
 }
 
-PlainCard.defaultProps = {
-  maxStamps: 10,
-  backgroundClr: "#171717",
-}
 
-export const GradientCard = () => {
+export const CardBody = ({numStamps,programID}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [stamps, setStamps] = useState(0)
+  const {user} = useAuth();
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/userData?email=${user.email}&programID=${programID}`)
+    .then(res => res.json())
+    .then(data => setStamps(data[0].currentStampCount));
+  },[programID])
 
-  return (
-    <>
-      <Box
-        p='18px'
-        w={{ base: "400px", lg: "500px" }}
-        bgGradient='linear(to-t, #13f1fc, #036ed9)'
-        color='#fff'
-        boxSizing='border-box'
-      >
-        <Box letterSpacing='1px' w='280px'>
-          <Text
-            fontFamily='Helvetica, sans-serif'
-            textTransform='uppercase'
-            textAlign='left'
-            fontSize='.9rem'
-          >
-            Buy 5 coffes get a free muffin on the 6th!
-          </Text>
-        </Box>
-        <Grid my={7} templateColumns='repeat(6, 1fr)' columnGap='15px'>
-          {_.range(1, 6).map((i) => (
-            <Box
-              display='flex'
-              justifyContent='center'
-              alignItems='center'
-              key={i}
-              background='#fff'
-              w='3rem'
-              h='3rem'
-              borderRadius='50px'
-              color='#000'
+  const handleStampUpdate = () => {
+    setStamps(stamps+1);
+    fetch(`http://localhost:3000/api/userData?email=${user.email}&programID=${programID}`, {
+      method: 'PUT',
+      headers: {
+        "content-type":"application/json"
+      },
+      body: JSON.stringify(stamps+1)     
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
+  }
+  return(
+    <Box>
+    <VStack align='center' mt={5}>
+        <PlainCard numStamps={numStamps} stamps={stamps}/>
+          <VStack align='center' py={4}>
+            <Button
+              h='45px'
+              w='350px'
+              borderRadius='40px'
+              colorScheme='success'
+              onClick={onOpen}
             >
-              {i <= stamps ? <AiOutlineCheck /> : ""}
-            </Box>
-          ))}
-          <Box
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            border='1px solid #fff'
-            w='3rem'
-            h='3rem'
-            borderRadius='50px'
-            fontSize='1rem'
-          >
-            <GiCupcake />
-          </Box>
-        </Grid>
-        <Text textTransform='uppercase' textAlign='right' fontSize='1.5rem'>
-          AWESOME BUSINESS
-        </Text>
-      </Box>
-      <Button
-        colorScheme='teal'
-        onClick={() => updateStampCount(stamps, setStamps, 5)}
-      >
-        Buy coffee
-      </Button>
-    </>
-  )
-}
-
-export const FancyCard = () => {
-  const [stamps, setStamps] = useState(0)
-
-  return (
-    <>
-      <Box
-        display='flex'
-        justifyContent='space-between'
-        alignItems='center'
-        flexDirection='column'
-        p='24px'
-        h='500px'
-        w={{ base: "320px", lg: "350px" }}
-        background='#fffef2'
-        boxSizing='border-box'
-      >
-        <Box letterSpacing='1px' w='280px'>
-          <Text
-            fontFamily='Helvetica, sans-serif'
-            textTransform='uppercase'
-            textAlign='left'
-          >
-            Thank you for your loyalty
-          </Text>
-        </Box>
-        <Grid
-          my={2}
-          templateColumns='repeat(3, 1fr)'
-          rowGap='20px'
-          columnGap='15px'
-        >
-          {_.range(1, 10).map((i) => (
-            <Box
-              display='flex'
-              justifyContent='center'
-              alignItems='center'
-              key={i}
-              color='#000'
-            >
-              <Text fontSize='45px' color={i <= stamps ? "#7986cb" : "#d4d4d4"}>
-                <FaCoffee />
-              </Text>
-            </Box>
-          ))}
-        </Grid>
-        <Box
-          display='flex'
-          position='relative'
-          justifyContent='center'
-          alignItems='center'
-          h={10}
-          width='65%'
-          background='#ff933b'
-          fontWeight={700}
-          fontFamily='Dancing Script, cursive'
-          fontSize='25px'
-          color='#fff'
-          _before={{
-            content: '""',
-            position: "relative",
-            left: { base: "162px", lg: "168px" },
-            borderRight: "20px solid transparent",
-            borderLeft: "20px solid transparent",
-            borderTop: "20px solid #ff933b",
-            borderBottom: "20px solid #ff933b",
-          }}
-          _after={{
-            content: '""',
-            position: "relative",
-            left: { base: "-162px", lg: "-168px" },
-            borderRight: "20px solid transparent",
-            borderLeft: "20px solid transparent",
-            borderTop: "20px solid #ff933b",
-            borderBottom: "20px solid #ff933b",
-          }}
-        >
-          Free Coffee
-        </Box>
-
-        <Text fontSize='45px' color='#9fa8da'>
-          <FaCoffee />
-        </Text>
-
-        <Box className='footer'>
-          <Text textTransform='uppercase' fontSize={25} fontWeight={700}>
-            RAD BUSINESS
-          </Text>
-          <Text textTransform='uppercase' fontSize={15} fontWeight={700}>
-            123 Random Street
-          </Text>
-        </Box>
-      </Box>
-      <Button
-        colorScheme='teal'
-        onClick={() => updateStampCount(stamps, setStamps, 9)}
-      >
-        Buy coffee
-      </Button>
-    </>
+              Buy Coffee
+            </Button>
+            <Button h='45px' w='350px' borderRadius='40px' colorScheme='danger'>
+              Remove Card
+            </Button>
+          </VStack>
+        </VStack>
+      <CodeModal
+        isOpen={isOpen}
+        onClose={onClose}
+        updateStampCount={handleStampUpdate}
+      />
+  </Box>
   )
 }

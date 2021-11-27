@@ -1,4 +1,4 @@
-import { Box, Button, Text, Image, VStack, HStack, Avatar } from "@chakra-ui/react"
+import { Box, Text, Image, VStack, Avatar } from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 
 export const RatingCard = ({ review }) => {
@@ -11,33 +11,33 @@ export const RatingCard = ({ review }) => {
       p={3}
       alignItems='center'
     >
-    
-    {review.img ? (
-             <Image
-             borderRadius='full'
-             src={review.img}
-             boxSize='4em'
-             minWidth='4em'
-           />
-            ) : (
-              <Avatar name={review.name} mt='12' size='xl' />
-            )}
-
+      {review.img ? (
+        <Image
+          borderRadius='full'
+          src={review.img}
+          boxSize='4em'
+          minWidth='4em'
+        />
+      ) : (
+        <Avatar name={review.name} mt='2' size='lg' />
+      )}
 
       <VStack alignItems='left' ml='2em'>
         <Text fontSize='md' fontWeight='bold'>
           {review.name}
         </Text>
+        {/*
+         */}
         <Box>
-          {[...Array(5)].map((_, i) => {
-            return (
-              <StarIcon color={i < review.rating ? "green" : "gray.300"} />
-            )
-          })}
+          {[...Array(5)].map((_, i) => (
+            <StarIcon
+              key={i}
+              color={i < review.rating ? "gold" : "gray.300"}
+            />
+          ))}
         </Box>
         <Text>{review.text}</Text>
       </VStack>
     </Box>
   )
 }
-

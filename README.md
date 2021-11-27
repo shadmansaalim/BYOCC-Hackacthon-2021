@@ -1,34 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+First Runner's up and winner of Best Design for HackVision 2021 hackathon held at RMIT
 
-## Getting Started
+## Introduction
+BYOCC is a solution to promote sustainability and reduce waste by encouraging people to bring their own keep cups when buying coffee from their favorite coffee place. The idea is similar to a stamp based loyalty card. Businesses offer a loyalty program that provides a stamp each time the customer brings their own coffee cup. Depending on the program, when the user fills up the loyalty card with the required number of stamps, they are entitled to a freebie based on what the business offers.
 
-First, run the development server:
+The app also allows customers to review a business based on sustainability practices. There sustainable and eco-friendly a business is, the higher its going to score on the sustainability scale.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Our final pitch for more details:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mVokfSLsHSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Technologies used
+- Next.js
+- Node
+- Firebase
+- Mongodb
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## How to navigate
+The `src` file contains most of the logic used to build the app. `/components` contains all the high level components that were used to put together the frontend. `/hooks`, `Firebase`, `context` and `PrivateRoute` contains logic that power Firebase authentication. `lib` and `utils` contain library files and any utilities respectively.

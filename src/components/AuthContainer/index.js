@@ -2,13 +2,17 @@ import { Box, Stack, Text } from "@chakra-ui/react"
 
 const AuthContainer = ({ children, handleSubmit }) => {
   return (
-    <Box
-      h='100%'
-      textAlign='center'
-      backgroundColor='rgb(56, 161, 105)'
-      color='#fff'
-    >
-      <Box color='#fff'>
+   <Box 
+   display='flex'
+   justifyContent='center'
+   alignItems='center'
+   height="100vh"
+   backgroundColor='rgb(56, 161, 105)'
+   color='#fff'
+   textAlign="center"
+   >
+      <Box width="100%">
+      <Box color='#fff' mb={4}>
         <Text fontSize='6xl' fontWeight='bold'>
           BYOCC
         </Text>
@@ -20,24 +24,25 @@ const AuthContainer = ({ children, handleSubmit }) => {
         display='flex'
         justifyContent='center'
         alignItems='center'
-        mt={7}
         color='white'
-        h='100%'
         onSubmit={handleSubmit}
+       
       >
         <Stack
-          bg='#EEEEEE'
+          bg='#eee'
           color='#000'
-          borderTopRadius='40'
-          w={{ base: "100%", sm: "85%", md: "65%", lg: "40%" }}
+          borderRadius='20'
           spacing={3}
-          px={7}
-          py={30}
+          px={12}
+          pt={12}
+          pb={24}
+          w={{ base: "100%", sm: "85%", md: "50%", xl: "32%" }}
         >
           {children}
         </Stack>
       </Box>
     </Box>
+   </Box>
   )
 }
 
