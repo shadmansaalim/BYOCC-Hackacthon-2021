@@ -30,17 +30,6 @@ export const SearchCard = ({ cardData }) => {
                 {avgRating.toFixed(1)}
               </Box>
             </Box>
-<<<<<<< HEAD
-            <Spacer />
-            <IconButton 
-              colorScheme="green"
-              icon={<AddIcon/>}
-              borderRadius="full"
-              onClick={() => router.push(`/buy_coffee/${_id}`)}
-            />
-          </Flex>
-        
-=======
           </Box>
           <Spacer />
           <IconButton
@@ -50,7 +39,6 @@ export const SearchCard = ({ cardData }) => {
             onClick={() => router.push("/buy_coffee")}
           />
         </Flex>
->>>>>>> 416511707a4a8ef99b4f73b07622fabf8fd3a271
       </Box>
     </Box>
   )

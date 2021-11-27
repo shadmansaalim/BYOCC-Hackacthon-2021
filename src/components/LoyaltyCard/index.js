@@ -84,7 +84,6 @@ export const CardBody = ({numStamps,programID}) => {
   },[programID])
 
   const handleStampUpdate = () => {
-    setStamps(stamps+1);
     fetch(`http://localhost:3000/api/userData?email=${user.email}&programID=${programID}`, {
       method: 'PUT',
       headers: {
@@ -93,7 +92,9 @@ export const CardBody = ({numStamps,programID}) => {
       body: JSON.stringify(stamps+1)     
     })
     .then(res => res.json())
-    .then(data => console.log(data));
+    .then(data => {
+      console.log(data)
+    });
   }
   return(
     <Box>
