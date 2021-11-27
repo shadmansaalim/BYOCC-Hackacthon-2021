@@ -64,7 +64,7 @@ export default function Search({ data: searchCards }) {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch("/src/pages/api/programs.js")
+  const res = await fetch("http://localhost:3000/api/programs")
   const data = await res.json()
 
   return {
