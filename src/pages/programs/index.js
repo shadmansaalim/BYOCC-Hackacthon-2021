@@ -3,6 +3,7 @@ import { Input, Text, Flex, Grid, Container} from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { DashboardCard } from "@components/DashboardCard"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
+import data from '../../pages/api/programs';
 
 export default function Search({ data: searchCards }) {
   const router = useRouter()
@@ -64,9 +65,6 @@ export default function Search({ data: searchCards }) {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch("http://localhost:3000/api/programs")
-  const data = await res.json()
-
   return {
     props: { data },
   }
