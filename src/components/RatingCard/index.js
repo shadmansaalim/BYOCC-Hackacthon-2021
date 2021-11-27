@@ -32,7 +32,7 @@ export const RatingCard = ({ review }) => {
           {[...Array(5)].map((_, i) => (
             <StarIcon
               key={i}
-              color={i < review.rating ? "green" : "gray.300"}
+              color={i < review.rating ? "gold" : "gray.300"}
             />
           ))}
         </Box>

@@ -17,30 +17,22 @@ import { updateStampCount } from "@utils/updateStampCount"
 
 import useAuth from "src/hooks/useAuth"
 
-const cards = () => {
+const cards = ({ data: program }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-
   const [stamps, setStamps] = useState(0)
-  console.log(stamps)
+  const { name, img, banner, programName, programID, organisationID,description,numStamps,freeItem} = program[0]
 
-  const business = {
-    name: "Starbucks",
-    descrip:
-      "Business details Lorem ipsum dolor sit amet, consectetur adipiscing elit Business details Lorem ipsum dolor sit amet, consectetur adipiscing elit Business details Lorem ipsum dolor sit amet",
-    avgRating: 4,
-    img: "https://bit.ly/2Z4KKcF",
-  }
 
   return (
     <PrivateRoute>
       <Box
-        height='10em'
-        objectFit='cover'
-        backgroundImage={business.img}
+        height='600px'
+        backgroundSize='100% 100%'
+        backgroundRepeat="no-repeat"
+        backgroundImage={banner}
         backgroundPosition='center center'
       />
 
-      <Container mt={4} maxW={{ base: "", lg: "container.lg" }}>
         <Box
           my={4}
           display='flex'
@@ -62,31 +54,35 @@ const cards = () => {
           </Box>
         </Box>
 
-        <VStack align='center' mt={5}>
-          <PlainCard stamps={stamps} />
-          <VStack align='center' mt={9}>
-            <Button
-              h='45px'
-              w='350px'
-              borderRadius='40px'
-              colorScheme='success'
-              onClick={onOpen}
-            >
-              Buy Coffee
-            </Button>
-            <Button h='45px' w='350px' borderRadius='40px' colorScheme='danger'>
-              Remove Card
-            </Button>
-          </VStack>
-        </VStack>
-      </Container>
-      <CodeModal
-        isOpen={isOpen}
-        onClose={onClose}
-        updateStampCount={() => updateStampCount(stamps, setStamps, 9)}
-      />
+        
     </PrivateRoute>
   )
 }
-
 export default cards
+
+export async function getStaticPaths() {
+  // Call an external API endpoint to get posts
+  const res = await fetch("http://localhost:3000/api/programs")
+  const programs = await res.json()
+
+  // Get the paths we want to pre-render based on posts
+  const paths = programs.map((program) => ({
+    params: { id: program._id },
+  }))
+
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+  const res = await fetch(
+    `http://localhost:3000/api/programs/${params.id}`
+  )
+  const data = await res.json()
+
+  return {
+    props: { data },
+  }
+}

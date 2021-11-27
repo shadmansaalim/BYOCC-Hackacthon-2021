@@ -22,17 +22,26 @@ async function getUserData(req, res) {
     // connect to the database
     let { db } = await connectToDatabase()
     const usersCollection = db.collection("users")
-    const organisationCollection = db.collection("organisation")
+    const programsCollection = db.collection("programs")
+    const programID = req?.query?.programID
     const userEmail = req.query.email
     const query1 = { email: userEmail }
     const user = await usersCollection.findOne(query1)
-
-    const userOrganisations = user?.addedOrganisations
-    if (userOrganisations) {
-      const query2 = { organisationID: { $in: userOrganisations } }
-      const organisations = await organisationCollection.find(query2).toArray()
-
-      res.status(200).json(organisations)
+    const userPrograms = user?.addedPrograms
+    if (userPrograms.length) {
+      if(programID){
+        const program = userPrograms.filter(program => program.programID === programID);
+        res.status(200).json(program);
+      }
+      else{
+        let ids = [];
+      userPrograms.forEach(program => {
+      ids.push(program.programID)
+      });
+      const query2 = { programID: { $in: ids } }
+      const programs = await programsCollection.find(query2).toArray()
+      res.status(200).json(programs)
+      }
     } else {
       res.status(200).json(0)
     }
@@ -46,43 +55,49 @@ async function updateUserData(req, res) {
     // connect to the database
     let { db } = await connectToDatabase()
     const usersCollection = db.collection("users")
+    const programID = req?.query?.programID
     const userEmail = req.query.email
-    const organisationID = req.body.organisationID
     const filter = { email: userEmail }
     const user = await usersCollection.findOne(filter)
-    console.log(user)
-    const addedOrganisations = user.addedOrganisations
-    const options = { upsert: true }
-    const updateDoc = {
-      $set: {
-        addedOrganisations: [...addedOrganisations, organisationID],
-        programName: req.body.programName,
-        uniqueCode: req.body.uniqueCode,
-        maxStamp: req.body.maxStamp,
-        numOfStamps: req.body.numOfStamps,
-      },
+    const userPrograms = user?.addedPrograms
+    let result;
+    if(userPrograms){
+      if(programID){
+        const program = userPrograms.find(program => program.programID === programID);
+        const stamp = req.body;
+        program.currentStampCount = stamp;
+        const programs = userPrograms.filter(program => program.programID !== programID);
+      
+        const updateDoc = {
+            $set: {
+               addedPrograms: [...programs,program],
+            },
+        }
+        result = await usersCollection.updateOne(filter, updateDoc)
+        console.log(result);
+      }
+      else{
+        const program = req.body
+        const updateDoc = {
+           $set: {
+             addedPrograms: [...userPrograms,program],
+           },
+        }
+        result = await usersCollection.updateOne(filter, updateDoc)
+      }
+      
     }
-    const result = await usersCollection.updateOne(filter, updateDoc, options)
-    console.log(result)
+    else{
+      const updateDoc = {
+        $set: {
+          addedPrograms: [program],
+        },
+      }
+      result = await usersCollection.updateOne(filter, updateDoc)
+    }
     res.json(result)
   } catch (error) {
     // return the error
     res.send("Could not add user to database")
   }
 }
-
-// const users = [
-//   {
-//     email: "test123@gmail.com",
-//     displayName: "Test Account",
-//     addedOrganisations: ["o1", "o2"],
-//     numOfStamps: 0
-//   },
-//   {
-//     email: "test2@gmail.com",
-//     displayName: "Test Account",
-//     addedOrganisations: ["o1"],
-//     numOfStamps: 0
-//   }
-
-// ]

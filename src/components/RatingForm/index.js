@@ -8,12 +8,11 @@ import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 toast.configure()
 
-export const RatingForm = () => {
+export const RatingForm = ({id}) => {
   const {user} = useAuth();
   const [rating, setRating] = useState(null)
   const [hover, setHover] = useState(null)
   const router = useRouter();
-  const id = router.query.id ;
 
   const [value, setValue] = useState("")
 
@@ -31,7 +30,7 @@ export const RatingForm = () => {
       text: value
     }
     e.preventDefault();
-    fetch(`http://localhost:3000/api/organisationdetails/${id}`, {
+    fetch(`http://localhost:3000/api/reviews/${id}`, {
       method: 'PUT',
       headers: {
         "content-type":"application/json"
@@ -55,7 +54,7 @@ export const RatingForm = () => {
   return (
     <>
       <Text m='2' fontWeight='semibold'>
-        Rate Us
+        Rate us on the basis of sustainability
       </Text>
       <form onSubmit={handleReviewSubmit}>
       <Box display='flex'>
@@ -70,7 +69,7 @@ export const RatingForm = () => {
               onClick={() => setRating(ratingValue)}
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(ratingValue)}
-              color={rated ? "green" : "gray.300"}
+              color={rated ? "gold" : "gray.300"}
               cursor='pointer'
               m='2'
             />
