@@ -1,14 +1,22 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "eslint:recommended",
-    "prettier",
-  ],
-  "plugins": ["prettier"],
-  "rules": {
-    "react/prop-types": 0,
-    "no-console": "error",
-    "react/react-in-jsx-scope": "off",
-    "jsx-quotes": ["warn", "prefer-single"],
-  },
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
 }
