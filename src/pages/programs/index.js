@@ -1,11 +1,10 @@
 import { useState } from "react"
-import { Input, Text, Flex, Grid, Container} from "@chakra-ui/react"
+import { Input, Text, Flex, Grid, Container } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { DashboardCard } from "@components/DashboardCard"
 import PrivateRoute from "src/PrivateRoute/PrivateRoute"
-import data from '../../pages/api/programs';
 
-export default function Search({ data: searchCards }) {
+export default function Search ({ data: searchCards }) {
   const router = useRouter()
   const [search_value, setSearchValue] = useState("")
   const handleChange = (event) => {
@@ -31,7 +30,7 @@ export default function Search({ data: searchCards }) {
 
         <Grid
           alignItems='center'
-          templateColumns={{sm: '1fr', md: 'repeat(2,1fr)',lg: 'repeat(3,1fr)',xl: 'repeat(3,1fr)'}}
+          templateColumns={{ sm: '1fr', md: 'repeat(2,1fr)', lg: 'repeat(3,1fr)', xl: 'repeat(3,1fr)' }}
           mt='8'
           columnGap={6}
           rowGap={3}
@@ -64,8 +63,13 @@ export default function Search({ data: searchCards }) {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps (context) {
+  const res = await fetch(
+    `http://localhost:3000/api/programs/`
+  )
+  const data = await res.json()
+
   return {
-    props: { data },
+    props: { data }
   }
 }
