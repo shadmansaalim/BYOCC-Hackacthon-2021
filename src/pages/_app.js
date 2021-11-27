@@ -5,7 +5,7 @@ import Navbar from "@components/Navbar"
 import theme from "../theme"
 import "./app.css"
 
-function MyApp({ Component, pageProps }) {
+function MyApp ({ Component, pageProps }) {
   const router = useRouter()
   return (
     <ChakraProvider theme={theme}>
