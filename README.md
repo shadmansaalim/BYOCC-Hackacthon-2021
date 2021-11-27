@@ -6,7 +6,7 @@ BYOCC is a solution to promote sustainability and reduce waste by encouraging pe
 The app also allows customers to review a business based on sustainability practices. There sustainable and eco-friendly a business is, the higher its going to score on the sustainability scale.
 
 Our final pitch for more details:
-src="https://www.youtube.com/embed/mVokfSLsHSQ"
+https://www.youtube.com/embed/mVokfSLsHSQ
 
 ## Technologies used
 - Next.js
